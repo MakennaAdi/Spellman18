@@ -1,0 +1,40 @@
+---
+title: "E&G 1997 Summary"
+author: "V. Aditya"
+date: "May 23, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Research Question
+\begin{enumerate}
+  \item{Is it possible to create indices of geographic concentration and coagglomeration that control for industry differences and take into account spillovers, natural advantage, and random chance?}
+  \item{Are observed levels of concentration greater than would be expected to arise randomly?}
+\end{enumerate}
+
+#Method
+Ellison and Glaeser first build an index for agglomeration within one industry. They separately build one term for natural advantage and one term for spillover, and define their distributions. Natural advantage is based on the average profitability of a particular geographic area, for which employment data is used as a proxy. Spillover is given in terms of a Bernoulli random variable with probability $\gamma^s$ that spillover exists between two industries. Then they develop a model for expected geographic concentration that satisfies the previous equations regarding spillover and natural advantage. They then add a conditional statement giving one variable for agglomeration within one industry and another for agglomeration across industries, and develop a model for expected geographic concentration which takes both kinds of agglomeration into account. By solving for $\gamma$, or the degree of agglomeration, they have an index for agglomeration that takes into account the two main causes as well as random chance, and controls for industry size and land areas.
+
+The next section of the paper presents the data, in which $\gamma$ is calculated for 459 manufacturing industries. They used the 50 states of the US and the District of Columbia as their geographic units and employment data for all industries in each state from the _Census of Manufactures_. They also test their index by using population as a measure of state size instead of manufacturing employment, and find that there is a high correlation between the results, indicating that manufacturing employment is a good measure of state size.
+
+##Limitations
+There are limitations on the geographic scope of localization forces that are measured by the model(p.901). One limitation is that potential spillovers are only realized if firms locate in the same area. In reality, there might be spillovers across borders from nearby plants, but the model would not take these into account. The other limitation is that natural advantage is generated independently for each area. 
+
+#Results
+Ellison and Glaeser confirms that the vast majority of industries show higher concentration than they would if there were no agglomerative forces at work. However, these agglomerative forces have a small effect in most cases, unlike the more well-known examples of agglomeration. 
+
+Second, while there are no clear patterns in the 15 most and least concentrated industries, there are clear differences in analysis at the county, state, and regional levels, with agglomerations showing most clearly at the regional level. In terms of coagglomeration, it appears that upstream and downstream ties do play a role in location decisions.
+
+#Appendix
+There are two EG metrics. The first is a measure of the degree of geographic concentration, given as $\gamma$. The second gives degrees of coagglomeration, defined as $\gamma^c$.
+
+$$\gamma\equiv\frac{G-\left(1-\sum\limits_i{x_i^2}\right)H}{\left(1-\sum\limits_{i=1}^{M}x_i^2\right)(1-H)}$$
+
+where $G$ is the geographic concentration of an industry in area $i$ given by $$G=\sum\limits_{i=1}^{M}(s_i-x_i)^2$$ and $H$ is the Herfindahl index of the industry plant size distribution, given by 
+
+This requires $s_i$ which is $i$'s share of industry employment and $x_i$ which is $i$'s share of overall manufacturing employment.
+
+

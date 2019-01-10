@@ -1,0 +1,41 @@
+---
+title: "Summary of Duranton and Overman"
+author: "V. Aditya"
+date: "June 6, 2018"
+output: pdf_document
+---
+
+#Research Questions
+How general and how strong is the tendency for firms to cluster?
+At what spatial scale does this clustering occur?
+Are small or large establishments the main drivers of localization? What is its sectoral scope?
+
+#Method
+Develop an index of localization that:
+\begin{enumerate}
+  \item{is comparable across industries}
+  \item{controls for the overall tendency of manufacturing to agglomerate}
+  \item{controls for the degree of industrial concentration}
+  \item{is unbiased with respect to scale and spatial aggregation}
+  \item{reports the significance of the result.}
+\end{enumerate}
+
+They do this by considering the distribution of distances between pairs of establishments in an industry and comparing it to that of hypothetical industries which are randomly distributed conditional on the distribution of aggregate manufacturing. 
+
+#Results
+
+Localization is a lot less prevalent than the Ellison Glaeser metric shows. Only 52% of four-digit industries exhibited localization, as opposed to 75-95% using the EG metric. Also, 24% showed dispersion with this metric, as opposed to 15% with the EG metric. Clustering mainly occurs at the 1-50km level. Small establishments drive localization in some industry sectors and large ones drive localization in other sectors.
+
+#Metric:
+
+$$K(d)=\frac{1}{n(n-1)h}\sum\limits_{i=1}^{n-1}\sum\limits_{j=i+1}^{n}f\frac{d-d_{i, j}}{h}$$ where
+
+$d_{i, j}=$ the Euclidean distance between establishments $i$ and $j$,
+
+$n=$ the number of establishments
+
+$K(d)=$ the estimator of the density of bilateral distances (i.e. K-density) at any given point $d$
+
+$h=$ bandwidth
+
+$f=$ the kernel function

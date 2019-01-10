@@ -1,0 +1,28 @@
+---
+title: "Summary of Bielefeld and Murdoch (2004)"
+author: "V. Aditya"
+date: "June 15, 2018"
+output: pdf_document
+---
+
+#Research Questions
+How similar or different are nonprofit sectors across metropolitan areas?
+How does the presence of for-profit providers affect nonprofit location?
+How important is agglomeration in explaining nonprofit location, above and beyond a needs-and-resources model?
+
+#Method
+\begin{ennumerate}
+  \item Assess evidence of localization by comparing nonprofit densities at increasing radii, from 1 to 5 miles.
+  \item Run a maximum likelihood regression that takes into account needs and resources (through census demographics) and agglomeration (through annual expenditures of nearby for-profits and nonprofits in the same sector).
+\end{ennumerate}
+
+#Results
+There is clear evidence of localization among nonprofits across industries. However, needs and resources seem to largely explain nonprofit location. When there is clustering, nonprofits seem to differentiate from other similar nonprofits as well as similar for-profits. 
+
+#Metric:
+
+In assessing localization, they use nonprofit densities at 1, 2, 3, 4, and 5 mile radii.
+
+In running the regression, they construct Thiessen polygons and use them to define locations. For-profit presence and provision is measured by the number of employees and the distance to the NP. Nearby nonprofits are measured with a weight matrix. 
+
+$$NPP_i=a + b_1\text{INCAVE}_i +$$

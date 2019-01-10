@@ -1,0 +1,16 @@
+---
+title: "Summary of E, G, and K 2010"
+author: "V. Aditya"
+date: "May 24, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Research Questions
+What causes industry agglomeration?
+#Method
+The authors use two different metrics of coagglomeration to measure agglomeration in industry pairs. The two metrics are the discrete EG metric developed in their 1997 paper and an approximation of the continuous DO metric developed by Duranton and Overman (2005). The DO metric gives an observed coagglomeration density which is then compared to the underlying distribution of manufacturing activity.
+##Limitations
+#Results
