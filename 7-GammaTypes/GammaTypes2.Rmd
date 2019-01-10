@@ -1,0 +1,86 @@
+---
+title: "Gamma Types, Part 2"
+output: html_notebook
+---
+In this document, I will categorize nonprofits by their gamma (Ellison and Glaeser, 1997) values. The four categories will be:
+\begin{enumerate}
+  \item{Low agglomeration, low coagglomeration}
+  \item{Low agglomeration, high coagglomeration}
+  \item{High agglomeration, low coagglomeration}
+  \item{High agglomeration, high coagglomeration}
+\end{enumerate}
+
+By "low" (co)agglomeration, I mean a negative value for gamma (that is, dispersion) and by "high" I mean a positive value for gamma.
+
+My first step is to add the correct zip-level gamma value and coagglomeration gamma value to the dataframe of nonprofits in the eastern 31 states. For this, I will use the data frames NTEECCzip, East15, and EGCoagg from the USEast15 project.
+
+```{r}
+load("/home/samutavi/Documents/Coe College/Spellman 2018/USEast2015/Output/EGCoagg.Rdata")
+load("/home/samutavi/Documents/Coe College/Spellman 2018/RData/NTEECCzip.Rdata")
+load("/home/samutavi/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+```
+
+Now I want to create a column in East15 with the zip-level gamma value, and another column with the group-level coagglomeration value.
+
+```{r}
+East15$gamma <- NTEECCzip$gamma[ match(East15$NTEECC, NTEECCzip$Industry) ]
+East15$coagg <- Group$GammaCoagg[ match(East15$NTEE1, Group$Group) ]
+```
+The next step is to create the four categories.
+
+```{r}
+#LL is low agglomeration, low coagglomeration
+LL <- subset.data.frame(East15, East15$gamma < 0 & East15$coagg < 0)
+#LH is low agglomeration, high coagglomeration
+LH <- subset.data.frame(East15, East15$gamma < 0 & East15$coagg > 0)
+HL <- subset.data.frame(East15, East15$gamma > 0 & East15$coagg < 0)
+HH <- subset.data.frame(East15, East15$gamma > 0 & East15$coagg > 0)
+
+45763 + 57135 + 73882 + 178356
+355286-355136
+#It seems 150 nonprofits have not entered into any category. Zeros??? or -Inf ?
+```
+Just in case it's preferable to have the category as a column in East15, I will create that variable as well.
+
+```{r}
+East15$category[East15$gamma < 0 & East15$coagg < 0] <- "LL"
+East15$category[East15$gamma < 0 & East15$coagg > 0] <- "LH"
+East15$category[East15$gamma > 0 & East15$coagg < 0] <- "HL"
+East15$category[East15$gamma > 0 & East15$coagg > 0] <- "HH"
+
+```
+
+I'm saving this dataframe as a new Rdata file for later use.
+
+```{r}
+getwd()
+save(East15, file = "Output/Final.Rdata")
+```
+Now to get some idea of how these categories differ, in terms of variables like total revenue, etc.
+
+```{r}
+ggplot(East15, aes(RULEDATE, TOTREV))+
+  geom_point(aes(col = category))+
+  scale_x_discrete(name = "Year Established", breaks = c("185001", "190001", "195001", "200001"), labels = c("1850", "1900", "1950", "2000"))
+
+```
+
+```{r}
+ggplot(East15, aes(gamma, TOTREV)) +
+  geom_point(aes(col = category)) +
+  xlim(-.3, .3)
+```
+
+```{r}
+ggplot(East15, aes(RULEDATE, NTEE1))+
+  geom_point(aes(col = category)) +
+  scale_x_discrete(name = "Year Established as NP", breaks = seq(190001, 201001, 1000), labels = substr(seq(190001, 201001, 1000), 1, 4)) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+      panel.background = element_blank(), axis.line = element_line(colour = "black"), text = element_text(size=16), plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 90)) + labs(title = "Nonprofit Groups Over Time By Agglom Category", x = "Date Established as a NP", y = "NTEE1 Groups")
+ggsave("Output/GroupsTimeCategory.jpg", width = 16, height = 9)
+```
+
+```{r}
+class(East15$RULEDATE)
+```
+

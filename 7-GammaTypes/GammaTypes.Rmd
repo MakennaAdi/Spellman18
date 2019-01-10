@@ -1,0 +1,93 @@
+---
+title: "Gamma in Four Categories"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+In this document, I will divide industries by their gamma values into categories based on two characteristics: sign and magnitude. I will then get descriptive statistics for each group to understand what characteristics industries in these groups share that may contribute to their similar gamma values. I will carry out this analysis with the gamma values I have for industries in the 31 eastern states of the US, with the state as the geographic unit of analysis. I will use the East15 file which I got in USEast Part 1 as well as the dataframe of state-level gamma values from USEast15 Part 2.
+
+```{r}
+load("/home/samutavi/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+load("/home/samutavi/Documents/Coe College/Spellman 2018/RData/NTEECCstate.Rdata")
+```
+First I want to know how many NAs I have.
+```{r}
+sum(is.na(NTEECCstate$gamma))
+sum(is.na(NTEECCstate$gamma))/1331
+```
+I'm going to create a categorical variable for each group and add it to the original NTEECCstate dataframe.
+```{r}
+NTEECCstate$category <- cut(NTEECCstate$gamma, c(-100, -1, -.5, 0, .5, 1, 100), labels = c(1:6))
+table(NTEECCstate$category)
+
+East15$category <- NTEECCstate$category[ match(East15$NTEECC, NTEECCstate$Industry) ]
+East15$gamma <- NTEECCstate$gamma[ match(East15$NTEECC, NTEECCstate$Industry) ]
+29+26+530+507+11+5+222
+```
+
+Now we want histograms of each category and summary statistics of each category.
+```{r}
+summary(East15$TOTREV[East15$category == "1"])
+summary(East15$TOTREV[East15$category == "2"])
+summary(East15$TOTREV[East15$category == "5"])
+summary(East15$TOTREV[East15$category == "6"])
+```
+Then I will use ggplot with facet-wrap to get side-by-side scatterplots of gamma by total revenue for each category. I will repeat this with any other variable of interest to see if there are patterns.
+```{r}
+library(reshape2)
+library(ggplot2)
+p <- ggplot(East15, aes(x=East15$gamma, y=East15$TOTREV)) + 
+  geom_point(shape=1) + 
+  facet_wrap( ~ category, ncol=2, scales = "free")
+p
+ggsave("gammatotrev.jpg", width = 16, height = 20)
+
+p2 <- ggplot(East15, aes(x=gamma, y=COMPENS)) + geom_point(shape=1)
+p2 <- p + facet_wrap( ~ category, ncol=2, scales = "free")
+p2
+ggsave("gammacompens.jpg", width = 16, height = 20)
+
+p3 <- ggplot(East15, aes(x=gamma, y=TOTEXP)) + geom_point(shape=1)
+p3 <- p + facet_wrap( ~ category, ncol=2, scales = "free")
+p3
+ggsave("gammatotexp.jpg", width = 16, height = 20)
+
+p4 <- ggplot(East15, aes(x=gamma, y=GFTSGRNTS)) + geom_point(shape=1)
+p4 <- p + facet_wrap( ~ category, ncol=2, scales = "free")
+p4
+ggsave("gammagftsgrnts.jpg", width = 16, height = 20)
+
+```
+I would like scatterplots of gamma by total revenue. 
+
+```{r}
+#Then we plot:
+ggplot(East15, aes(x=TOTREV, y=gamma)) + 
+  geom_point(aes(col=NTEE1)) +
+  ylim(-1,1)
+ggsave("gammarevNT1.jpg", width = 16, height = 9)
+```
+Now I would like gamma by ID, color coded again, by group.
+```{r}
+ggplot(East15, aes(x=EIN, y=gamma)) +
+  geom_point(aes(col=NTEE1)) +
+  ylim(-1,1)
+ggsave("gammaEINNT1.jpg", width = 16, height = 9)
+#Now by sector
+ggplot(East15, aes(x=EIN, y=gamma)) +
+  geom_point(aes(col=NTMAJ10)) +
+  ylim(-25,1)
+```
+
+```{r}
+#I want to see a scatterplot of gamma for every industry, colored by sector and sized according to the number of nonprofits in the industry.
+
+NTEECCstate$NTEE1 <- East15$NTEE1[which(NTEECCstate$Industry %in% East15$NTEECC)] 
+
+ggplot(NTEECCstate, aes(x=Industry, y=gamma)) +
+  geom_point(aes(col=NTEE1, size=freq)) +
+  ylim(-1,1)
+ggsave("gammaIndNT1.jpg", width = 16, height = 9)
+```
+
