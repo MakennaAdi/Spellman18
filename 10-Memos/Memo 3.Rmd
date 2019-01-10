@@ -1,0 +1,37 @@
+---
+title: "Memo 3"
+date: "June 1, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I made an appendix to the summary of the 1997 Ellison and Glaeser article with the major metrics and their explanations, and started a table of research questions and answers that I will add to with each article. I presented on an management article with Trevor and read Duranton and Overman (2005). 
+
+#What I learned
+I learned that R was purposely designed so that objects in the global environment cannot be used when knitting because all code should be immediately replicable, with data loaded into the document locally. This explains many issues I have had with knitting to PDF and I am learning how to load an object locally. I also started to understand Duranton and Overman's continuous metric and how it improved on Ellison and Glaeser's metric of agglomeration by, 1. including statistical significance, and 2. including actual distances between points. I also noticed from both articles and the presentation on spacial segregation metrics on Wednesday, that scale is very important when talking about agglomeration. I am getting more comfortable using packages and libraries in R, and learned several different ways to create a table.
+
+
+#Barriers
+My comprehension of the Duranton and Overman article dropped when they got to kernel-smoothing. As usual, I did not have the math background to understand their math fully. However, I am getting better at understanding the main points and the gist of the results despite not knowing all the math. 
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read and work on my presentation for Wednesday on Bielefeld (2004)}
+  \item{learn to load objects correctly so that I can knit to PDF, among other basic R skills}
+  \item{start working with the data on nonprofits in Cedar Rapids}
+  \item{write a one-page summary of Duranton and Overman}
+\end{itemize}
+ 

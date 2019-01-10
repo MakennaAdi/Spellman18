@@ -1,0 +1,36 @@
+---
+title: "Memo 6"
+date: "June 22, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I presented Marchesini(2016) and read and annotated Fruttero and Gauri (2005). I also started annotating Bielefeld, Murdoch, and Waddell (1997) and read about Geographic Weighted Regression.
+
+#What I learned
+I added a lot to my skills with Beamer, mainly by using and learning to modify custom templates. I feel confident that I can recreate most of the features of Google Slides that I like, as needed. I learned about Geographic Weighted Regression and and started to understand more about economic models vs. econometric models. 
+
+#Barriers
+At this point, the biggest barrier is a health condition that interferes with my productivity. Other than that, a smaller issue is that I am confusing the empirical results from all the papers I've read so far. I need to spend more time with the table to resolve this. 
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read and work on my presentation for Wednesday on Fruttero and Gauri (2005)}
+  \item{work on the table that compares studies and the table that contains research questions and results}
+  \item{start reading Rosenthal and Strange (2005) and the chapter from Alonso}
+  \item{start replicating metrics}
+\end{itemize}
+ 

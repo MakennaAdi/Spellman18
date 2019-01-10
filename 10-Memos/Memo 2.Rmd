@@ -1,0 +1,48 @@
+---
+title: "Memo 2"
+date: "May 25, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I continued through Ellison and Glaeser (1997) to come up with a one-page summary. I also went through Ellison, Glaeser, and Kerr (2010) enough to be able to summarize the main points of the paper. I followed a mapping tutorial in R, and analyzed Ben Bernanke's paper on the Great Depression for the Spellman meeting on Wednesday. I read portions of chapters 1 through 4 of _Introduction to Econometrics_, as well as the leadership article that Trevor and I will present to the Spellman group on Wednesday.
+
+#What I learned
+I learned the basics of mapping in R, including how to use maps and mapdata libraries to get data sets to make maps. Specifically, I can:
+\begin{itemize}
+  \item{change fill colors and outline colors,} 
+  \item{place data points on a map, either at given coordinates or randomly} 
+  \item{reproduce the same random numbers every time by using set.seed}
+  \item{create my own polygons with geom polygon and my own data set, using the group aesthetic to connect points correctly}
+  \item{make country maps with state borders or state maps with county borders}
+\end{itemize}
+
+In terms of understanding articles, studying the Bernanke article with the group gave me more efficient ways of analyzing arguments and the construction of an academic paper. The textbook on Econometrics helped me review what I know about random variables, probability distributions and summation functions, which are used frequently in the literature on agglomeration. I also got a better understanding of how econometric models are built and tested.
+
+I did not focus heavily on the 1997 article this week, although I was able to write a one page summary of the question, methods, and findings. I went through the 2010 article again and was able to make much more sense of it, having better understood the EG metric developed in the previous paper. 
+
+#Barriers
+I didn't understand regression as well as I needed to for the 2010 paper, so I spent time with Chapters 3 and 4 of the Econometrics textbook. My lack of background in statistics continues to pose challenges to understanding the material. However, rather than a barrier, it is just something that slows my progress. Apart from that,  my productivity in the afternoons is low; I need new strategies to make the most of my time in the afternoon, and possibly shift more work to the evening or morning. 
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{work with Trevor on our presentation for Wednesday}
+  \item{read Duranton and Overman (2005)}
+  \item{learn basic data analysis with R, as well as how to create visualizations with data}
+  \item{start developing ideas on how the concepts from the two articles I have gone through so far can be applied to the nonprofit sector in Cedar Rapids} 
+\end{itemize}
+  
+  I will also finish my notes on the two Ellison and Glaeser articles. I plan to change the format somewhat, since the value of having each equation in the notebook is not worth the time that it takes to reproduce it in Latex, for the purpose of understanding the paper. However, I will be able to give a summary of each equation and understand the purpose of every variable.

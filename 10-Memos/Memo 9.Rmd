@@ -1,0 +1,36 @@
+---
+title: "Memo 9"
+date: "August 4, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+Two weeks ago, I replicated the EG coagglomeration metric. In order to confirm that the metric was working properly, I backtracked and tried to replicate Bielefeld and Murdoch's 2004 results for Boston and Dallas, using the EG metric for agglomeration, using both 2015 data and then 1999 data. Then I extended the simulation by comparing industries that differed only in overall industry size.
+  This week, I went back to the original data files from the NCCS and realized I had only a small subset of the total nonprofit organizations in the US. I downloaded and prepared the correct data files and then started running the analyses again, starting with the Boston and Dallas 1999 document.
+
+#What I learned
+I learned that understanding the content of every data file is very important and that it can be very misleading to make assumptions about data files. It seems that there is agglomeration among 501(c)(3) organizations in Boston and Dallas and there is a lot more to understand, as I continue the analysis using the correct data files.
+
+
+#Barriers
+Using the wrong data set was a major barrier. However, I think it was a good lesson to learn in a relatively harmless way. Going forward, I will be much more careful with the data I use, even when I'm in a hurry to see if my code works. Also, I didn't realize that there was information on the content of the data files at the very bottom of the download page. In the future, I will know that there must be detailed explanations of file names somewhere on the site.
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{turn 33}
+  \item{redo all my analyses with the correct data}
+  \item{present the real results on August 8}
+\end{itemize}
+ 

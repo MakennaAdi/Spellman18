@@ -1,0 +1,34 @@
+---
+title: "Memo 8"
+date: "July 20, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+Wow! What a productive \textit{week} it has been! This \textit{week}, I replicated the EG metric for Cedar Rapids, and then for 31 states of the Eastern US. I ran a simulation with invented data to test the metric and then started analyzing the distribution of gamma. I also gave a synthesis presentation of all the literature I have covered so far. Lastly, I started writing a package for the EG metric.
+
+#What I learned
+I learned many functions in R in order to replicate the EG metric, like merge() and aggregate(). I learned to use by() and apply() and started writing my own functions. I learned that gamma is largely negative in the nonprofit sector, although this requires more investigation. I started learning how to clean a dataset for analysis, and worked on making better histograms.
+
+#Barriers
+My knowledge of statistics is minimal and makes it hard to analyze and interpret my results. I will need help with that. Also, thanks to the arrival of a new human named "Michael", I did not get the Alonso text that I was supposed to read. It seems likely that "Michael" will be to blame for many many things in the future.
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read Alonso}
+  \item{work on my presentation for July 25}
+  \item{start interpreting my results with the EG metric}
+\end{itemize}
+ 

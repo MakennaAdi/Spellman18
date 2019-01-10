@@ -1,0 +1,51 @@
+---
+title: "Spellman Memo 1"
+subtitle: "Agglomeration Economies 101"
+date: "Released 5/13/18"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+
+#Benefits of Agglomeration
+
+Firms cluster together because \textit{agglomeration cuts costs}. Alfred Marshall laid out the three reasons that firms might save money by clustering:
+\begin{enumerate}
+  \item \textbf{Sharing suppliers of intermediate goods.} If the cost of transporting a good is given by \(C_T=C_sd_s+C_md_m\) where $C_s$ is the cost per mile of transporting intermediate goods from the supplier (i.e. procurement), $C_m$ is the cost per mile of transporting final goods to the marketplace (i.e. distribution), and $d_s$ and $d_m$ are the distances to the supplier or the marketplace, respectively, then depending on whether $C_s$ or $C_m$ is higher, ceteris paribus, firms can minimize the cost of transportation by clustering around the supplier ($d_s=0$ when $C_s>C_m$) or clustering at the marketplace ($d_m=0$ when $C_m>C_s$).
+  \item \textbf{Sharing the labor pool.} By minimizing a worker's search costs, firms can make the flow of human capital more efficient. By locating near other firms in similar industries (localization), firms can minimize the travel cost and search time of workers looking for new jobs in their fields. By locating close to areas where their workers live (urbanization), they can minimize the workers' commuting costs, in turn minimizing wages. 
+  \item \textbf{Sharing ideas and information.} Every firm has a social network composed of every worker or manager and everyone they interact with on a regular basis. When two firms are located in the same geograohic area, the overlap of their networks is maximized, leading to the highest possible transfer of information. While the dynamics of information sharing have changed significantly since Marshall's time, there is still a significant measurable benefit from colocation, especially in terms of urbanization economies where cities are centers of learning and education.
+\end{enumerate}
+
+In \textbf{localization economies}, competing firms cluster together in one area and benefit from the geographic concentration of their particular industry. In \textbf{urbanization economies}, firms cluster across industries and form urban areas, or cities, which benefit all firms in the city, not just those in one industry. 
+
+The effects of Marshall's three reasons for clustering are collectively called \textbf{spillover}. Spillover effects are hard to separate from other reasons that firms might end up clustering, which have nothing to do with benefiting from each other. One example is what Ellison and Glaeser(1997) call \textbf{natural advantage}, which refers to benefits that firms get from the characteristics of their particular geographic location, for example, the existence of some kind of mineral ore needed by the firm, or its strategic location near a body of water. In these cases, firms are just trying to optimize their access to resources and not necessarily benefiting from colocation with one another.
+
+#Evidence of Agglomeration Economies
+Three symptoms of external economies according to O'Sullivan (2003) are:
+\begin{itemize}
+  \item higher worker productivity
+  \item new production plants
+  \item increasing employment growth
+\end{itemize}
+When these occur within one industry, they point to localization economies. When they happen in a city as a whole, it could indicate urbanization economies. We might expect these to be useful indicators for external economies among non-profits as well.
+
+#Factors in Firm Location
+Firms optimize their locations based on factors like transportation costs, energy costs, labor costs, amenities, local public services, and of course, the locations of other firms. The relative importance of each of these factors depends on the industry. For example, service-oriented industries may prioritize accessibility to customers while resource-oriented firms prioritize proximity to suppliers of intermediate goods. Since labor accounts for roughly 75% of production costs (O'Sullivan, 2003), factors affecting the labor market are likely to play a large role in the location of firms. These include commuting costs, the housing market, and natural amenities, which all play a role in determining wages. 
+
+##Housing
+Housing costs are of special interest because they affect the labor pool in important ways. Since housing is immobile, durable, and expensive, and moving costs are high, the housing market tends to sort households by income, leading to geographic areas of high and low incomes. Low-income areas tend to locate near city centers, while high income households tend to locate in the suburbs. Since low-income households tend to have less education on average, this leads to a concentration of human capital in certain areas. Depending on the firm's labor needs, it will have to consider the commuting cost from the relevant neighborhoods. 
+
+#Implications for Nonprofits
+Nonprofit organizations provide products and services which firms will not provide because there is no way to make a profit. Nonprofit status often implies that the organization runs on a shoestring budget, especially in the area of human services, and in these cases we expect agglomeration economies to be an important factor in location decisions. On the other hand, there are also large nonprofits with stable revenues and because there is no profit involved, there may be little incentive to cut costs further. In this case, we would not see localization or urbanization economies factoring in significantly to nonprofit location decisions. 
+
+A few more factors set nonprofits apart from firms. Since many nonprofits cater to disadvantaged populations, accessibility from low-income neighborhoods is likely to be an important factor. At the same time, since nonprofits often rely on donor funding, visibility to high-income neighborhoods may also play a role. If nonprofits are not clustering as expected, more research would be needed to find out why not. There would likely also be policy implications to such an outcome.

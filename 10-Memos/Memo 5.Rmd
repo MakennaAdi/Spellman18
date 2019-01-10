@@ -1,0 +1,35 @@
+---
+title: "Memo 5"
+date: "June 15, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I created a presentation in Beamer and presented Harrison (2008). I read through Marchesini (2016) and expanded on the wealth variable in R. I also created a side by side comparison/summary of all the papers I have read so far, so that I have all relevant information in one place.
+
+#What I learned
+The first two days of this week were like a crash course in Beamer. I learned to create hyperlinked TOCs, de-emphasize and uncover text, and "animate" slides using \ pause and overlays. I can also create simple tables and insert graphics. In R, I learned to make plots in both base R and ggplot, with color-coded variables and legends. Perhaps more importantly, I learned to save and load data into a document so that my work is replicable and I can knit to PDF. Finally, I read about nonprofits in Brazil and started to get an understanding of Marchesini's empirical results.    
+
+#Barriers
+The initial learning curve in Beamer was a significant barrier this week. However, by Wednesday, I felt more comfortable getting the effects I wanted in my presentation. In terms of R, I feel like I am over the steepest part of the learning curve, since I know enough to understand many forum or stackexchange posts. I am also starting to understand more of the literature on agglomeration. However, now that I have read several papers, I'm confusing their methods and results. I expect the table I'm working on to help with that. I still have not found a way to knit text-heavy tables to PDF without them going off the page.
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read and work on my presentation for Wednesday on Marchesini (2016)}
+  \item{work on the table that compares studies and the table that contains research questions and results}
+  \item{read Bielefeld, Murdoch, and Waddell (1997)}
+\end{itemize}
+ 

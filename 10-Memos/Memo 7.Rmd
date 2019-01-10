@@ -1,0 +1,35 @@
+---
+title: "Memo 7"
+date: "June 29, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I started reading Rosenthal and Strange. I also worked on replicating the EG metric for agglomeration. 
+
+#What I learned
+I gained several useful skills in R, like how to use the aggregate function to subtotal a variable by zip code (or other variable). I also learned to merge datasets, delete columns, replace NAs with 0s, and use the hhi package to find the Herfindahl index for a variable. 
+
+#Barriers
+A lot of Rosenthal and Strange was hard to understand. I will need help to understand it. 
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read Alonso}
+  \item{work on my presentation for July 11}
+  \item{troubleshoot my metric and fix it}
+\end{itemize}
+ 

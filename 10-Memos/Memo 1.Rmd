@@ -1,0 +1,45 @@
+---
+title: "Memo 1"
+date: "May 18, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week, having read Chapters 1-4, 13, 17-18 in Urban Economics, and also having read the two papers by Ellison and Glaeser, I started working through the math in the 1997 Ellison and Glaeser paper. I got to Proposition 2, although I still have questions about Propositions 1 and 2. I also did a fair bit of learning Latex and completed my first presentation to the Spellman group.
+
+#What I learned
+I learned to set up an R Notebook, with or without a TOC. I can knit to PDF, insert math notation inline or in display mode, and create simple graphs of equations using R chunks. I learned to code for all kinds of text and math notation, including:
+\begin{itemize}
+  \item{fractions and summation functions,} 
+  \item{differently sized brackets, conditional cases} 
+  \item{greek letters for variables, bars for averages, sub- and superscripts}
+  \item{italics, lists with bullet points of numbers, text in different colors}
+  \item{hierarchical headers}
+\end{itemize}
+
+  I also learned to generate random numbers in Excel and manipulate them to better understand the indices in the paper (i.e. Herfindahl, which is used repeatedly in different contexts). 
+
+In terms of the literature and math I have been studying, I got a better understanding of variance and expected values, enough to understand the first four equations. I also got a better understanding of probabilities, summation functions, and Herfindahl indices than I previously had. On a macro level, I understand the concepts behind agglomeration, coagglomeration, discrete metrics, and continuous metrics, as well as natural advantage and the different kinds of spillover. I also understand Ellison and Glaeser's method in using employment to calculate probabilities of a firm locating in a certain area and then comparing the data to a hypothetical random "dartboard" situation where firm locations are chosen randomly. 
+
+Probably the most important thing I started learning is understanding the implications of an equation by looking at what role each variable plays in the metric. My economic intuition is improving. 
+
+#Barriers
+A lot of the math dealing with distributions goes far over my head because I have not studied advanced statistics. It takes me a while to understand degrees of freedom, different kinds of random variables, the properties of different kinds of distributions. Since I don't understand the statistics, I don't always know what information I can safely ignore. Deriving equations is hard for the same reason, although I have been able to google a lot of the necessary information.
+
+Learning Latex so that I can take notes on R also slows me down, although it is not necessarily difficult. As long as I can find the information, I can learn it quickly. Sometimes it takes a while to find the information online, epecially since I don't always know the names or conventions surrounding some math symbols. Some very simple equations like $y=x-x^2$ took me a long time to graph since I knew nothing about graphing in R. However, I thought it was worth the time since this is an important basic skill. 
+
+Along the same lines, I am going to work today on drawing simple maps so that I can draw a diagram of what the 1997 paper is talking about. Although this will likely take quite some time, it will help me visualize the agglomeration metrics better and also build basic skills in mapping that will be useful for the rest of the project. 
+
+#Plan for next week
+In the next week, I plan to learn basic mapping skills and finish my notes on the 1997 paper. Finishing the 1997 paper will involve writing out the remaining equations and defining the variables, going back and expanding on the implications of each equation or proposition, and taking notes in R notebook on the data analysis and results section of the paper. I will also get through the 2010 paper's math, although it may take longer to get my notes into R. My goal is to finish my notes on both papers, fully understand the implications of each one, and read from _Cities, Agglomeration, and Spatial Equilibrium_ (Glaeser, 2008) as well as some parts of _Introduction to Econometrics_ (Maddala, 1988) by the end of the month.

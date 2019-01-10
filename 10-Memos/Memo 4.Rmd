@@ -1,0 +1,37 @@
+---
+title: "Memo 4"
+date: "June 8, 2018"
+output: 
+  pdf_document:
+    highlight: haddock
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+  html_document: 
+    fig_caption: yes
+    theme: journal
+header-includes:
+- \usepackage{graphics}
+- \usepackage{float}
+- \usepackage{longtable}
+---
+#Material covered this week
+This week I read, annotated, and presented Bielefeld and Murdoch (2004). I wrote a summary of Duranton and Overman and started reading Harrison (2008). I learned basic data analysis in R and worked on creating and visualizing a "wealth" variable created from a 2013 Cedar Rapids data set. I added a few more questions and results to the table that tracks all the papers I have read so far.
+
+#What I learned
+I got very useful feedback about my presentaton. I experimented with ways to make regression results easier to understand, and realized I should present the research motivations and implications earlier in the presentation. I'm also getting better at gauging what is important and what is not when I'm reading papers so that I don't spend too much time on a concept that is beyond what I can understand. This will be important with the Harrison paper, since it involves math that is beyond my current understanding. I also finally had more success at creating histograms and probability density plots. 
+
+
+#Barriers
+Math is less of a barrier as I learn how to understand the gist of the results even if I don't understand every detail of the method. My laptop is likely to be a barrier in the future since it runs very inefficiently. I'm expecting switching to Ubuntu to improve performance greatly, but there will also be a learning curve in using it. My Google Slides presentation had a glitch when I downloaded it as Powerpoint, and was hopelessly inept at rendering equations, so I'm hoping to learn to use new platforms for presentations that are more apt for economics purposes. Productivity was much less of an issue this week, so I think my planning is getting better.
+
+
+#Plan for next week
+In the next week, I plan to:
+\begin{itemize}
+  \item{read and work on my presentation for Wednesday on Harrison (2008)}
+  \item{put on paper some preliminary ideas on how to create the metrics we want from the data we have}
+  \item{continue working with the data on nonprofits in Cedar Rapids, including a color-coded plot of the wealth variable}
+  \item{write a one-page summary of Bielefeld and Murdoch}
+\end{itemize}
+ 
