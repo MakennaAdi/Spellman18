@@ -1,0 +1,84 @@
+---
+title: "Understanding Outlier Gammas"
+output: html_notebook
+---
+
+In this document, I try to understand the causes of outliers in the distribution of nonprofit gammas. I use the East 15 dataframe to identify problematic individual nonprofits, and the NTEECCzip dataframe which contains gamma values for all NP core codes.
+
+```{r}
+load("~/Documents/Coe College/Spellman 2018/RData/NTEECCzip.Rdata")
+load("~/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+```
+I also want to define a function before I start that will create the kind of table I want every time, without redundant code.
+
+```{r}
+gazer <- function(x) {
+  stargazer(x, type = "text", omit.summary.stat = c("p25", "p75"))
+}
+
+gazer(NTEECCzip)
+```
+
+
+#Cause 1: H = 1
+The first clear reason for huge negative gammas is that H is 1 or close to 1. This happens when only one nonprofit in a core code has all or almost all the revenue for that core code. 
+```{r}
+library("stargazer")
+infs <- subset.data.frame(NTEECCzip, NTEECCzip$H == 1)
+stargazer(infs, type = "text", omit.summary.stat = c("p25", "p75"))
+```
+
+#Cause 2: X = 0
+Another clear issue is when there are only one or two nonprofits in a core code. Measuring the "agglomeration" of a single nonprofit is meaningless. I would like to see all the core codes where this occurs.
+
+```{r}
+lowfreq <- subset.data.frame(NTEECCzip, NTEECCzip$freq == 1)
+gazer2(lowfreq)
+```
+It's clear from this table that the X values are close to 0 for this group, but also that H is higher than 1, which shouldn't be possible. To find out why, I'm going to look at the zsubk variable in East15 which is used to construct H. Zsubk is each nonprofit's share of core code revenue, so this should also be between 0 and 1.
+
+```{r}
+#Chunk of code from USEast Part 1:
+industries <- aggregate(East15$TOTREV, 
+          list(East15$NTEECC),
+          sum)
+colnames(industries) <- c("Industry", "r")
+#Generating frequency column
+library(plyr)
+np <- count(East15, "NTEECC")
+names(np)[1] = "Industry"
+industries <- merge(industries, np)
+
+#Subsetting by frequency greater than 3: should this be done later???
+#industries <- subset.data.frame(industries, freq > 2)
+
+East15$subtotals <- industries$r[ match(East15$NTEECC, industries$Industry) ]
+East15$zsubk <- East15$TOTREV/East15$subtotals
+```
+This creates the zsubk variable in East15. Now I can subset the "bad" zsubks, if they exist.
+```{r}
+badz <- subset.data.frame(East15, East15$zsubk > 1)
+```
+Negative revenues are to blame for these bad zsubs. I suspect negative revenues are causing other problems elsewhere by messing up the "fractions of revenues" in other variables. 
+
+#Cause 3: Negative Revenues
+
+```{r}
+negrev <- subset.data.frame(East15, East15$TOTREV < 0)
+rev0 <- subset.data.frame(East15, East15$TOTREV == 0)
+```
+
+I have over 12,000 nonprofits with negative revenues. This is a major issue. I will have to rerun the analysis without these and see how different the gamma distribution is. 
+I'm going to eliminate all the core codes with infinite or NaN gammas.
+
+```{r}
+nans <- subset.data.frame(NTEECCzip, NTEECCzip$gamma == "NaN")
+CCfinite <- subset(NTEECCzip, is.finite(NTEECCzip$gamma))
+stargazer(CCfinite, type = "text")
+median(CCfinite$gamma)
+
+#Looking at high negative gammas
+lows <- subset(CCfinite, CCfinite$H > .95)
+stargazer(lows, type = "text", omit.summary.stat = c("p25", "p75"))
+```
+

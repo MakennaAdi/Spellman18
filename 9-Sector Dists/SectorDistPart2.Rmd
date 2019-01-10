@@ -1,0 +1,45 @@
+---
+title: "Sector Distributions, Part 2"
+output: html_notebook
+---
+
+In this document, I recreate the facet wrap plot of gamma distributions by sector with the CCzipFINAL dataset. This dataset was created in USEast2015/East15MOD.rmd.
+
+```{r}
+load("~/Documents/Coe College/Spellman 2018/RData/CCzipFINAL.Rdata")
+load("~/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+```
+
+Using East15, I need to create columns in the FINAL Rdata file containing the NTEE1 group and the NTMAJ12 sector.
+
+```{r}
+sectors <- aggregate(East15$TOTREV,
+                       list(East15$NTEECC, East15$NTEE1, East15$NTMAJ12),
+                       sum)
+colnames(sectors) <- c("Corecode", "Group", "Sector", "Revenue")
+levels(sectors$Sector)
+#Creating another column with better names for sectors by first making a dataframe and then merging.
+s <- data.frame("Sector"=c("AR", "BH", "ED", "EH", "EN", "HE", "HU", "IN", "MU", "PU", "RE", "UN"), "Name"= c("Arts and Humanities", "Higher Education", "Education", "Hospitals", "Environment", "Health", "Human Services", "International", "Mutual Benefit", "Public & Societal Benefit", "Religious", "Unknown"))
+
+#Now adding these columns to the data files with the gamma values. I don't need revenue, I just used it to get the other three columns.
+CCzipFINAL$Group <- sectors$Group[ match(CCzipFINAL$Industry, sectors$Corecode)]
+CCzipFINAL$Sector <- sectors$Sector[ match(CCzipFINAL$Industry, sectors$Corecode)]
+CCzipFINAL$Name <- s$Name[ match(CCzipFINAL$Sector, s$Sector)]
+```
+
+```{r}
+library(ggplot2)
+ggplot(CCzipFINAL, aes(x=gamma)) + 
+  geom_histogram(data=subset(CCzipFINAL, CCzipFINAL$gamma>0), fill = "green") +
+  geom_histogram(data=subset(CCzipFINAL, CCzipFINAL$gamma<=0), fill = "red") +
+  facet_wrap( ~ Name, ncol=3, scales = "free_y") +
+  theme(strip.text = element_text(size = 30))
+ggsave("histoCCzipFINAL.jpg", width = 28, height = 20)
+
+
+ggplot(CCzipFINAL, aes(x=CCzipFINAL$gamma)) + 
+  geom_histogram() +
+  facet_wrap( ~ Name, ncol=2, scales = "free_y")
+ggsave("histoCCzipFINAL2.jpg", width=28, height=16)
+
+```

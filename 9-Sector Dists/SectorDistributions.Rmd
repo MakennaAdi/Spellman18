@@ -1,0 +1,64 @@
+---
+title: "Sector Distributions"
+output: html_notebook
+---
+
+In this document, I will look at the distribution of gammas within nonprofit sectors in the 31 eastern states of the US.
+
+```{r}
+load("~/Documents/Coe College/Spellman 2018/RData/NTEECCzip.Rdata")
+load("~/Documents/Coe College/Spellman 2018/RData/NTEE1zip.Rdata")
+load("~/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+```
+
+Using East15, I need to create columns in the NTEECC and NTEE1 Rdata files containing the NTEE1 group and/or the NTMAJ12 sector.
+
+```{r}
+sectors <- aggregate(East15$TOTREV,
+                       list(East15$NTEECC, East15$NTEE1, East15$NTMAJ12),
+                       sum)
+colnames(sectors) <- c("Corecode", "Group", "Sector", "Revenue")
+levels(sectors$Sector)
+#Creating another column with better names for sectors by first making a dataframe and then merging.
+s <- data.frame("Sector"=c("AR", "BH", "ED", "EH", "EN", "HE", "HU", "IN", "MU", "PU", "RE", "UN"), "Name"= c("Arts and Humanities", "Higher Education", "Education", "Hospitals", "Environment", "Health", "Human Services", "International", "Mutual Benefit", "Public and Societal Benefit", "Religious", "Unknown"))
+
+#Now adding these columns to the data files with the gamma values. I don't need revenue, I just used it to get the other three columns.
+NTEECCzip$Group <- sectors$Group[ match(NTEECCzip$Industry, sectors$Corecode)]
+NTEECCzip$Sector <- sectors$Sector[ match(NTEECCzip$Industry, sectors$Corecode)]
+NTEECCzip$Name <- s$Name[ match(NTEECCzip$Sector, s$Sector)]
+```
+In order to do the same to the NTEE1 dataframe, I first need to figure out if the use of NTMAJ 12 rather than NTMAJ 10 affected the gamma for Groups B and E, which are the only ones affected by the NTMAJ12 classification. I will save that task for later and concentrate on looking at the distributions of gammas among sectors for core codes.
+
+```{r}
+library(ggplot2)
+ggplot(NTEECCzip, aes(x=gamma)) + 
+  geom_histogram(data=subset(NTEECCzip, NTEECCzip$gamma>0), fill = "green") +
+  geom_histogram(data=subset(NTEECCzip, NTEECCzip$gamma<=0), fill = "red") +
+  facet_wrap( ~ Name, ncol=2, scales = "free")
+ggsave("Sector Dists/Output/histograms.jpg", width=16, height=20)
+
+
+ggplot(NTEECCzip, aes(x=NTEECCzip$gamma)) + 
+  geom_histogram() +
+  facet_wrap( ~ Name, ncol=2, scales = "free")
+ggsave("Sector Dists/Output/histo2.jpg", width=16, height=20)
+
+```
+
+I'm getting slight differences between the two sets of histograms, which shouldn't be the case. I'm going to see if the aes part of the code makes a difference.
+
+```{r}
+ggplot(NTEECCzip, aes(x=gamma))+
+  geom_histogram() +
+  xlim(c(-.01, .01))
+
+ggplot(NTEECCzip, aes(x=gamma))+
+  geom_histogram(data=subset(NTEECCzip, NTEECCzip$gamma>0), fill = "green") +
+  geom_histogram(data=subset(NTEECCzip, NTEECCzip$gamma<=0), fill = "red") +
+  xlim(c(-.01, .01))
+
+
+
+```
+ The difference is here, too, and I'm not sure what causes it. However, both graphics seem accurate although they are scaled a little differently...
+ 
