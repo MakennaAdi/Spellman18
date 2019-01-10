@@ -1,0 +1,164 @@
+---
+title: "DGS  Pairwise Coagglomeration"
+output: pdf_document
+---
+
+I want to find the pairwise DGS coagglomeration for all nonprofit groups in the eastern US. The DGS metric for coagglomeration is $$C(r)=\frac{G_r-\sum_{i=1}^{r}w_i^2G_i}{1-\sum_{i=1}^rw_i^2}$$
+
+where:
+
+$G_r$ is the geographic concentration of $r$ nonprofit groups, that is, $\sum_{k=1}^{K}s_k^2-\frac{1}{K}$ where $s_k$ is the kth region's share of total revenue from all $r$ groups
+$G_i$ is the geographic concentration of group $i$, that is, $\sum_{k=1}^{K}s_k^2-\frac{1}{K}$ where $s_k$ is the kth region's share of total revenue from group $i$
+$w_i$ is group $i$'s share of total revenue in $r$. 
+
+First, I load the nonprofit data for all 501(c)(3) organizations in the 31 eastern states of the US.
+```{r}
+load("/home/samutavi/Documents/Coe College/Spellman 2018/RData/East15.Rdata")
+
+#Clean up negative revenues
+East15 <- subset(East15, East15$TOTREV >= 0)
+```
+
+First, I aggregate by Groups and Regions to find $G_i$.
+
+```{r}
+Groups <- aggregate(East15$TOTREV, 
+          list(East15$NTEE1),
+          sum)
+colnames(Groups) <- c("Group", "Totrev")
+
+Regions <- aggregate(East15$TOTREV, 
+          list(East15$NTEE1, East15$ZIP5),
+          sum)
+colnames(Regions) <- c("V1", "ZIP5", "Totrev.zip")
+Regions$Totrev <- Groups$Totrev [ match(Regions$V1, Groups$Group)]
+Regions$ssubk <- Regions$Totrev.zip/Regions$Totrev
+Regions$ssubk2 <- (Regions$ssubk)^2
+
+library(dplyr)
+rg <- count(Regions, V1)
+colnames(rg) <- c("Group", "K")
+Groups <- merge(Groups, rg)
+
+
+Jsubi <- aggregate(Regions$ssubk2, 
+          list(Regions$V1),
+          sum) 
+Groups$Jsubi <- Jsubi$x
+
+Groups$Gsubi <- Groups$Jsubi-(1/Groups$K)
+```
+
+Now start creating the pairwise variables.
+```{r}
+library(data.table)
+
+
+#Testing the transpose function
+P <- data.frame(expand.grid(letters[1:3], letters[1:3]))
+P2 <- transpose(data.frame(combn(letters[1:3], 2)))
+P <- transpose(data.frame(combn(LETTERS[1:3], 2)))
+R <- data.frame("V1"=c("B", "A", "X", "A", "S", "P", "T", "W", "X"), "ZIP5" = c(1, 1, 1, 2, 2, 2, 2, 3, 3))
+R2 <- merge(P, R)
+
+#Continuing now that transpose works the way I think it does.
+Pairs <- transpose(data.frame(combn(LETTERS[1:26], 2)))
+
+Pairs$Gsubi1 <- Groups$Gsubi[ match(Pairs$V1, Groups$Group)]
+Pairs$Gsubi2 <- Groups$Gsubi[ match(Pairs$V2, Groups$Group)]
+
+Pairs$rev1 <- Groups$Totrev[ match(Pairs$V1, Groups$Group)]
+Pairs$rev2 <- Groups$Totrev[ match(Pairs$V2, Groups$Group)]
+
+Pairs$REV <- Pairs$rev1+Pairs$rev2
+
+Pairs$wsubi1 <- Pairs$rev1/Pairs$REV
+Pairs$wsubi2 <- Pairs$rev2/Pairs$REV
+```
+
+Now I need to create $G_r$, which will be a little more complicated. I need a new Regions dataframe, with two columns of Groups (Var1 and Var2, like the pairwise df) and every region where either group exists.
+
+```{r}
+Regions2 <- data.frame("V1"=Pairs$V1, "V2"=Pairs$V2)
+Regions3 <- data.frame("V1"=Regions$V1, "ZIP5"=Regions$ZIP5)
+R2 <- merge(Regions2, Regions3)
+#Merged by V1
+
+#Renaming V1 as V2
+colnames(Regions) <- c("V2", "ZIP5", "Totrev.zip", "Totrev", "ssubk", "ssubk2")
+#Making another df to merge with
+Regions4 <- data.frame("V2"=Regions$V2, "ZIP5"=Regions$ZIP5)
+R3 <- merge(Regions2, Regions4)
+
+#Merging R2 and R3
+PairReg <- merge(R2, R3, all = T)
+1397747+1836703
+head(PairReg)  
+tail(PairReg)
+#OMG!!!!!I think this worked!!!! PairReg has fewer than the sum of all R2 and R3 and this makes sense because there would be observations in both that are the same.
+```
+
+```{r}
+#Now to get the Rev columns by V1 and V2...I will merge by two variables, Group and Zip.
+Regsimple <- subset(Regions, select = c("V2", "Totrev.zip", "ZIP5"))
+
+PairReg <- merge(PairReg, Regsimple, all.x = T, all.y = F)
+colnames(PairReg) <- c("V2", "ZIP5", "V1", "Rev2")
+
+colnames(Regsimple) <- c("V1", "Totrev.zip", "ZIP5")
+PairReg <- merge(PairReg, Regsimple, all.x = T, all.y = F)
+colnames(PairReg) <- c("ZIP5", "V1", "V2", "Rev2", "Rev1")
+PairReg$Revr <- PairReg$Rev1+PairReg$Rev2
+```
+
+Now I get rid of all NAs, that is, regions where V1 and V2 do not coexist.
+```{r}
+PairReg2 <- subset.data.frame(PairReg, is.finite(PairReg$Revr))
+
+```
+
+Perfect! Now I can get the other necessary variables to find Gsubr. These include:
+
+$K$, which is the number of regions with either V1 or V2 or both, and
+$s_k$, which is each region's share of total revenue in r, that is, Revr/TOTREVr. I will need to get total revenue for each group and add them to get TOTREVr.
+
+```{r}
+PairReg2$REV1 <- Groups$Totrev [ match(PairReg2$V1, Groups$Group)]
+PairReg2$REV2 <- Groups$Totrev [ match(PairReg2$V2, Groups$Group)]
+PairReg2$TOTREVr <- PairReg2$REV1+PairReg2$REV2
+PairReg2$ssubk <- PairReg2$Revr/PairReg2$TOTREVr
+PairReg2$ssubk2 <- PairReg2$ssubk^2
+
+K <- data.frame("V1" = Pairs$V1, "V2" = Pairs$V2)
+K <-summarize(group_by(PairReg,V1,V2),count =n())
+colnames(K) <- c("V1", "V2", "Kr")
+Pairs <- merge(Pairs, K)
+
+Jsubr <- aggregate(PairReg2$ssubk2,
+                         list(PairReg2$V1, PairReg2$V2), 
+                         sum)
+colnames(Jsubr) <- c("V1", "V2", "Jsubr")
+Pairs <- merge(Pairs, Jsubr)
+Pairs$Gsubr <- Pairs$Jsubr- (1/Pairs$Kr)
+
+```
+
+That's it! Now I have everything I need to calculate $C(r)$.
+
+```{r}
+
+Pairs$wsq1 <- Pairs$wsubi1^2
+Pairs$wsq2 <- Pairs$wsubi2^2
+Pairs$SUM1 <- (Pairs$Gsubi1*Pairs$wsq1) + (Pairs$Gsubi2*Pairs$wsq2) 
+Pairs$SUM2 <- Pairs$wsq1 + Pairs$wsq2
+
+Pairs$Cr <- (Pairs$Gsubr-Pairs$SUM1)/(1-Pairs$SUM2) 
+pos <- subset(Pairs, Pairs$Cr>=0)
+library(ggplot2)
+ggplot(Pairs, aes(x = Cr))+
+  geom_histogram(data=subset(Pairs, Pairs$Cr>=0), fill = "green") +
+  geom_histogram(data=subset(Pairs, Pairs$Cr<0), fill = "red") 
+
+```
+
+

@@ -1,0 +1,221 @@
+---
+title: "DGS Coagglomeration"
+output: 
+  pdf_document: default
+  html_notebook: default
+  toc: TRUE
+---
+
+In this document, I will replicate the DGS coagglomeration metric for nonprofit core codes in the 31 easter states of the US. My first step is to prepare the RData file that I will use for this project.
+
+#Data Preparation
+
+```{r}
+US2015PC <- read.csv("~/Documents/Coe College/Spellman 2018/NCCS Data/nccs.core2015pc.csv")
+US2015PF <- read.csv("~/Documents/Coe College/Spellman 2018/NCCS Data/nccs.core2015pf.csv")
+
+colnames(US2015PC) <- toupper(names(US2015PC))
+colnames(US2015PF) <- toupper(names(US2015PF))
+
+#I need the variables for total revenue, total expenses, program revenue, compensation, and gifts and grants.
+US2015PF$TOTEXP <- US2015PF$P1TOTEXP
+US2015PF$TOTREV <- US2015PF$P1TOTREV
+US2015PC$TOTEXP <- US2015PC$EXPS
+US2015PF$COMPENS <- US2015PF$P1OFCOMP
+US2015PC$GFTSGRNTS <- US2015PC$GFTGRNTSRCVD170
+US2015PF$GFTSGRNTS <- US2015PF$P1TCONT
+#The only one I don't have is program revenue for private foundations
+
+cmn <- intersect(names(US2015PC),names(US2015PF))
+US2015 <- rbind(US2015PC[,cmn],US2015PF[,cmn])
+
+#Check how many NAs I have in each column.
+sum(is.na(US2015$ZIP5))
+
+US2015 <- subset.data.frame(US2015, !is.na(US2015$ZIP5))
+
+east <- c("AL","AR","CT","DE","FL","GA","IA","IL","IN","KY","LA","MA","MD","ME","MI","MN","MO","MS","NC","NH","NJ","NY","OH","PA","RI","SC","TN","VA","VT","WI","WV")
+East15 <- US2015[US2015$STATE %in% east, , drop = TRUE]
+East15$STATE <- factor(East15$STATE)
+
+save(East15, file = "/home/samutavi/Documents/Coe College/Spellman 2018/DGSCoagglomeration/RData/East15.Rdata")
+
+rm(US2015, US2015PC, US2015PF, cmn, east)
+```
+
+#Analysis
+
+Now I will use this data file to replicate the DGS coagglomeration metric. This will involve roughly three steps. First, I replicate the DGS agglomeration metric at the core code level. Second, I replicate the agglomeration metric at the group level. Third, I use both those output data frames to find the DGS coagglomeration metric.
+
+##DGS Agglomeration at Core Code Level
+
+```{r}
+load("RData/East15.Rdata")
+NTEECC <- aggregate(East15$TOTREV, 
+          list(East15$NTEECC),
+          sum)
+colnames(NTEECC) <- c("NTEECC", "r")
+
+#Generating frequency column
+library(plyr)
+np <- count(East15, "NTEECC")
+names(np)[1] = "NTEECC"
+NTEECC <- merge(NTEECC, np)
+colnames(NTEECC) <- c("NTEECC", "r", "N")
+
+regions <- aggregate(East15$TOTREV, 
+          list(East15$NTEECC, East15$ZIP5),
+          sum)
+colnames(regions) <- c("NTEECC", "ZIP5", "r")
+
+#Generating frequency column
+rg <- count(regions, "NTEECC")
+colnames(rg) <- c("NTEECC", "K")
+NTEECC <- merge(NTEECC, rg)
+
+#Finding the max freq
+max(rg$K)
+
+
+East15$IndRev <- NTEECC$r[ match(East15$NTEECC, NTEECC$NTEECC)]
+East15$z_n <- East15$TOTREV/East15$IndRev
+East15$z_n2 <- East15$z_n^2
+H <- aggregate(East15$z_n2,
+                      list(East15$NTEECC),
+                      sum)
+NTEECC$H <- H$x
+
+
+regions$IndRev <- NTEECC$r[ match(regions$NTEECC, NTEECC$NTEECC)]
+regions$s_k <- regions$r/regions$IndRev
+regions$s_k2 <- regions$s_k^2
+J <- aggregate(regions$s_k2,
+                      list(regions$NTEECC),
+                      sum)
+NTEECC$J <- J$x
+#Final step:
+NTEECC$G <- NTEECC$J-(1/NTEECC$K)
+NTEECC$M <- NTEECC$H-(1/NTEECC$N)
+NTEECC$DGS <- NTEECC$G-NTEECC$M
+
+```
+
+##DGS Agglomeration at Group Level
+
+```{r}
+NTEE1 <- aggregate(East15$TOTREV, 
+          list(East15$NTEE1),
+          sum)
+colnames(NTEE1) <- c("NTEE1", "r")
+
+#Generating frequency column
+library(plyr)
+np <- count(East15, "NTEE1")
+names(np)[1] = "NTEE1"
+NTEE1 <- merge(NTEE1, np)
+colnames(NTEE1) <- c("NTEE1", "r", "N")
+
+regions <- aggregate(East15$TOTREV, 
+          list(East15$NTEE1, East15$ZIP5),
+          sum)
+colnames(regions) <- c("NTEE1", "ZIP5", "r")
+
+#Generating frequency column
+rg <- count(regions, "NTEE1")
+colnames(rg) <- c("NTEE1", "K")
+NTEE1 <- merge(NTEE1, rg)
+
+#Finding the max freq
+max(rg$K)
+
+
+East15$IndRev <- NTEE1$r[ match(East15$NTEE1, NTEE1$NTEE1)]
+East15$z_n <- East15$TOTREV/East15$IndRev
+East15$z_n2 <- East15$z_n^2
+H <- aggregate(East15$z_n2,
+                      list(East15$NTEE1),
+                      sum)
+NTEE1$H <- H$x
+
+
+regions$IndRev <- NTEE1$r[ match(regions$NTEE1, NTEE1$NTEE1)]
+regions$s_k <- regions$r/regions$IndRev
+regions$s_k2 <- regions$s_k^2
+J <- aggregate(regions$s_k2,
+                      list(regions$NTEE1),
+                      sum)
+NTEE1$J <- J$x
+#Final step:
+NTEE1$G <- NTEE1$J-(1/NTEE1$K)
+NTEE1$M <- NTEE1$H-(1/NTEE1$N)
+NTEE1$DGS <- NTEE1$G-NTEE1$M
+
+```
+
+##Coagglomeration metric
+
+I now have two of the variables I need to find the coagglomeration metric, $G_r$ and $G_i$. I will name these as such in the respective dataframes.
+
+```{r}
+colnames(NTEECC)[7] <- "Gsubi"
+colnames(NTEE1)[7] <- "Gsubr"
+```
+
+The other variable I need is $w_i$, where
+$$w_i = \frac{T_i}{\sum_{j=1}^{r}{T_j}}$$ and 
+$T_i$ is, in our case, total revenue for industry $i$. So, $w_i$ is every core code's share of group revenue. I already have the total revenue of every group--this is "r" in the data frame NTEE1. I will add this column to the data frame NTEECC and then divide to get $w_i$.
+
+```{r}
+#This adds a column with the first digit of every core code, i.e. the group.
+NTEECC$NTEE1 <- substr(NTEECC$NTEECC, 1, 1)
+
+#Now I can add the total group revenue to the NTEECC data frame, matching by NTEE1.
+NTEECC$Tsubj <- NTEE1$r[ match(NTEECC$NTEE1, NTEE1$NTEE1)]
+
+#I already have Tsubi, so I will name it as such.
+colnames(NTEECC)[2] <- "Tsubi"
+
+#Now I'm ready to create wsubi
+NTEECC$wsubi <- NTEECC$Tsubi/NTEECC$Tsubj
+
+```
+
+Now that I have $w_i$, I'm ready to apply the whole formula for the coagglomeration metric. This is given as $$C(r) = \frac{G_r-\sum_{i=1}^{r}{w_i^2G_i}}{\left(1-\sum_{i=1}^{r}{w_i^2}\right)}$$
+
+I need two more columns in the NTEECC data frame. These are $w_i^2$ and $w_i^2G_i$, which can be aggregated to give values for each group.
+
+```{r}
+NTEECC$wi2 <- NTEECC$wsubi^2
+NTEECC$wi2Gi <- NTEECC$wi2*NTEECC$Gsubi
+```
+
+Now I aggregate these and create two columns in NTEE1.
+
+```{r}
+wi2Gi <- aggregate(NTEECC$wi2Gi,
+          list(NTEECC$NTEE1),
+          sum)
+colnames(wi2Gi) <- c("NTEE1", "sumWG")
+NTEE1 <- merge(NTEE1, wi2Gi)
+
+
+wi2 <- aggregate(NTEECC$wi2,
+          list(NTEECC$NTEE1),
+          sum)
+colnames(wi2) <- c("NTEE1", "sumW")
+NTEE1 <- merge(NTEE1, wi2)
+
+#Now to use the entire formula
+NTEE1$coagg <- (NTEE1$Gsubr-NTEE1$sumWG)/(1-NTEE1$sumW)
+
+hist(NTEE1$coagg)
+
+library(ggplot2)
+ggplot(NTEE1, aes(coagg)) +
+  geom_histogram(binwidth = .05, fill = "black", col= "gray", breaks=c(-.2, -.15, -.1, -.05, 0, .05, .1, .15, .2)) +
+  xlim(-.2, .15) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"), text = element_text(size=20), plot.title = element_text(hjust = 0.5)) + labs(title = "NP alphas of coagglomeration", x = "Alpha Coagg", y = "Number of groups")
+ggsave("Output/alphacoagg.jpg", width = 16, height = 9)
+```
+
