@@ -1,0 +1,223 @@
+---
+title: "Nonprofit Agglomeration"
+subtitle: "Replicating the EG Metric"
+author: " "
+institution: 
+date: "2018"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Median}
+- \usepackage{caption}
+- \usepackage{xcolor}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \usepackage{pgflibraryarrows}
+- \captionsetup[figure]{font = scriptsize, labelfont = scriptsize}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+  
+#Purpose and Result Summary
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##Research Question
+
+Do forces of agglomeration affect nonprofit location decisions?
+\newline
+If so, do they cluster enough?
+
+##Project Overview
+\begin{enumerate} \itemsep1em
+  \item<1,2>{Read previous literature on agglomeration and nonprofit location}
+  \item<1,2>{Replicate Ellison and Glaeser metric}
+  \item<2>{Replicate E and G coagglomeration metric}
+  \item<2>{Replicate Duranton and Overman metric}
+  \item<2>{Interpret results}
+  \item<2>{Write paper}
+\end{enumerate}
+
+##Main Results
+
+Nonprofits seem to disperse more than they agglomerate.
+
+#Previous Literature
+
+##Summary of Previous Literature
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .15]{prevlit.png}
+\end{center}
+\end{adjustwidth}
+
+##Ellison and Glaeser Summary
+Research Question:
+\begin{enumerate}
+  \item{Is it possible to create indices of geographic concentration and coagglomeration that control for industry differences?}
+  \item{Are observed levels of concentration greater than would be expected to arise randomly?}
+\end{enumerate}
+
+Results: \newline
+--Slight concentration is highly prevalent.\newline
+--Gamma values between 0 and .6
+
+Method:\newline
+--Create indices of agglomeration "$\gamma$" and coagglomeration "$\gamma^c$" \newline
+--Compare manufacturing industries in the US
+
+#Method
+
+##Ellison and Glaeser Metric
+
+$$\gamma = \frac{G-(1-X)H}{(1-X)(1-H)}$$
+
+where $G=\sum(s_i-x_i)^2$, $H=\sum{z_k^2}$, and $X=\sum{x_i^2}$
+\begin{itemize} \itemsep1em
+  \item{$z_k$ is a measure of each plant's size}
+    \begin{itemize}
+    \item{given by each plant's share of industry employment}
+  \end{itemize}
+  \item{$s_i$ is each area's share of the industry employment}
+  \begin{itemize}
+    \item{the sum of all $z_k$ in each area}
+  \end{itemize}
+  \item{$x_i$ is each area's share of overall manufacturing employment}
+\end{itemize}
+
+##Method
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{tabular}{lll}
+Variable              & E and G (1997)            & My project          \\[5pt]\hline\hline
+                      & For-profit                & Nonprofit           \\[5pt]
+Sector                & Manufacturing             & 12 major sectors    \\[5pt]
+Industry              & 459 industries            & 758 industries      \\[5pt]
+Size                  & employment                & total revenue       \\[5pt]
+Geographic unit       & county                    & zipcodes            \\[5pt]
+                      & state                     & state               \\[5pt]
+                      & region                    &                     \\[5pt]
+\end{tabular}
+\caption{Application to Nonprofits.}
+\end{table}
+\end{adjustwidth}
+
+##NTEE Classification
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .43, trim = {0 0 0 4cm}, clip]{NTEE.jpg}
+\end{center}
+\end{adjustwidth}
+
+##Method
+\begin{enumerate} \itemsep1em
+  \item{industry P, sector HU, in Cedar Rapids by zipcode}
+  \item{all industries in sector HU (I, J, K, L, M, N, O, and P) in Cedar Rapids}
+  \item{all industries in all sectors in Cedar Rapids, using 5-digit and 9-digit zipcodes}
+  \item{all industries (NTEECC and NTEE1) in the eastern US, by zipcode}
+  \item{all industries (NTEECC and NTEE1) in the eastern US, by state}
+\end{enumerate}
+
+#Data
+
+##Data
+\begin{itemize} \itemsep1em
+  \item{IRS 990 data from National Center for Charitable Statistics}
+  \item{31 eastern states of the US, 2015}
+  \item{758 industries in 26 major groups}
+  \item{12 sectors}
+\end{itemize}
+
+
+#Results
+
+##Ellison and Glaeser Results
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .18]{EGgamma.png}
+\end{center}
+\end{adjustwidth}
+
+##My Results
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .3]{gammazip2.jpg}
+\end{center}
+\end{adjustwidth}
+
+##Comparison
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{tabular}{lll}
+                      & E and G (1997)            & My project          \\[5pt]\hline\hline
+Negative gammas       & 2.83\%                     & 85.09\%              \\[5pt]
+Positive gammas       & 97.17\%                    & 13.59\%            \\[5pt]
+Gamma of zero         & 0\%                        & 1.32\%               \\[5pt]
+\end{tabular}
+\caption{Comparison with E and G Results.}
+\end{table}
+\end{adjustwidth}
+
+##Comparison
+\begin{columns}
+
+\begin{column}{.5\textwidth}
+\includegraphics[width = 1.2\textwidth, trim = {0 19cm 0 1cm}, clip]{EGscale.png}
+\captionof{figure}{Ellison and Glaeser scale results}
+\end{column}
+
+\begin{column}{.5\textwidth}
+\includegraphics[height = .27\textheight]{gammazip2.jpg}
+\includegraphics[height = .27\textheight]{gammastate.jpg}
+\captionof{figure}{Nonprofit scale results}
+\end{column}
+
+\end{columns}
+
+#Conclusion and Next Steps
+
+##Conclusion
+DISPERSION, not agglomeration
+\newline
+\newline
+Spatial monopolies? Or competition for funding?  
+
+##Further Exploration
+\begin{itemize} \itemsep1em
+  \item{Nonprofit industry comparable to manufacturing?}
+  \item{Minimum number of firms in industry?}
+  \item{Total revenue? Another variable?}
+  \item{Analysis at county level}
+\end{itemize}
+
+##Next Steps
+\begin{itemize} \itemsep1em
+  \item{Replicate E and G metric for coagglomeration}
+  \item{Finish exploring and interpreting results from the EG metric}
+\end{itemize}
+
+##References
+\footnotesize
+\hangparas{3em}{1}
+Ellison, G., & Glaeser, E. L. (1997). Geographic concentration in US manufacturing industries: A dartboard approach. \textit{Journal of political economy, 105(5)}, 889-927.
+
+
+##Overview
+  \tableofcontents

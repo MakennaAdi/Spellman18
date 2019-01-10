@@ -1,0 +1,246 @@
+---
+title: "Nonprofit Agglomeration"
+subtitle: ""
+author: "Westberg and Aditya"
+institution: 
+date: "2018"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Median}
+- \usepackage{subcaption} 
+- \usepackage{caption}
+- \usepackage{xcolor}
+- \usepackage{mdwlist}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \usepackage{pgflibraryarrows}
+- \captionsetup[figure]{font = scriptsize, labelfont = scriptsize}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+  
+#Purpose and Background
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+##Background on Agglomeration
+
+Agglomeration is \textit{geographic clustering.}
+\newline
+\newline
+Firms benefit in three ways:
+\begin{itemize}
+  \item{labor pooling}
+  \item{input sharing}
+  \item{knowledge spillover}
+\end{itemize}
+
+##Background on Agglomeration
+
+\begin{figure}
+  \begin{subfigure}[H]{0.40\textwidth}
+    \includegraphics[width=\textwidth]{localization.jpg}
+    \caption{Localization}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}[H]{0.40\textwidth}
+    \includegraphics[width=\textwidth]{urbanization.jpg}
+    \caption{Urbanization}
+  \end{subfigure}
+\end{figure}
+
+
+##Research Question
+
+Do forces of agglomeration affect nonprofit location decisions?
+\newline
+\newline
+If so, do they cluster enough?
+
+#Previous Literature
+
+##Summary of Previous Literature
+\begin{figure}
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .15]{prevlit.png}
+\caption{For-profit results.}
+\end{center}
+\end{adjustwidth}
+\end{figure}
+
+##Summary of Previous Literature
+\begin{figure}
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .15]{prevlit2.png}
+\caption{Nonprofit results.}
+\end{center}
+\end{adjustwidth}
+\end{figure}
+
+##Ellison and Glaeser Summary
+Research Question:
+\begin{enumerate}
+  \item{Is it possible to create indices of geographic concentration and coagglomeration that control for industry differences?}
+  \item{Are observed levels of concentration greater than would be expected to arise randomly?}
+\end{enumerate}
+
+##Ellison and Glaeser Agglomeration Metric
+\begin{center}
+\LARGE
+\boldmath{$\gamma$}
+\end{center}
+
+Measures the amount of agglomeration in an industry above and beyond what we would expect.
+\vspace{1cm}
+
+Main results: Manufacturing industries show strong evidence of low levels of agglomeration. (Gamma between 0 and .6 for majority of industries.)
+
+#Data
+
+##Data
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{tabular}{lll}
+Variable              & E and G (1997)            & My project          \\[5pt]\hline\hline
+                      & For-profit                & NCCS IRS-990 data   \\[5pt]
+Sector                & Manufacturing             & 12 sectors, 26 groups\\[5pt]
+Industry              & 459 industries            & 758 core codes      \\[5pt]
+Size                  & employment                & total revenue       \\[5pt]
+Geographic unit       & county                    & zipcodes            \\[5pt]
+                      & state                     & state               \\[5pt]
+                      & region                    &                     \\[5pt]
+\end{tabular}
+\caption{Application to Nonprofits.}
+\end{table}
+\end{adjustwidth}
+
+##NTEE Classification
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\vspace{1cm}
+\includegraphics[height = .6\textheight]{NTEE.jpg}
+\end{center}
+\end{adjustwidth}
+
+#Method
+
+##Method
+\begin{enumerate} \itemsep1em
+  \item<1->{Measure agglomeration among nonprofits using the EG metric}
+  \item<2->{Compare nonprofit industries with for-profit industries, if possible}
+  \item<3->{Compare nonprofit sectors in terms of agglomeration patterns.}
+  \item<4->{Run simulations of gamma to better understand the construction of the metric.}
+\end{enumerate}
+
+#Results
+
+##Comparison
+\begin{columns}
+
+\begin{column}{.5\textwidth}
+\includegraphics[width = 1.2\textwidth, trim = {0 19cm 0 1cm}, clip]{EGscale.png}
+\captionof{figure}{Ellison and Glaeser scale results}
+\end{column}
+
+\begin{column}{.5\textwidth}
+\includegraphics[height = .27\textheight]{gammazip.jpg}
+\includegraphics[height = .27\textheight]{gammastate.jpg}
+\captionof{figure}{Nonprofit scale results}
+\end{column}
+
+\end{columns}
+
+##Nonprofit Sector Distributions
+\begin{center}
+\includegraphics[width = \textwidth]{"../Sector Dists/histoCCzipFINAL".jpg}
+\end{center}
+
+##Simulation Conclusions
+Gamma seems to be:
+\begin{itemize} \itemsep2em
+  \item Sensitive to scale
+  \item Sensitive to industry differences
+  \item Sensitive to size of sector
+\end{itemize}
+
+Does gamma really measure what we want?
+
+##DGS vs EG Metrics
+\begin{center}
+\includegraphics[width = 1\textwidth]{"../DGSMetricReplication/Output/gammaalpha".jpg}
+\end{center}
+Overall correlation: .2126 \newline
+Positive value correlation: .9822
+
+#Conclusion
+
+##Conclusion
+\begin{itemize}\itemsep2em
+  \item{Both metrics confirm that nonprofits differ widely in how they agglomerate or disperse.}
+  \item{Nonprofit sectors behave very differently.}
+  \item{The much simpler DGS metric seems to do just as well at showing agglomeration, and may also show dispersion accurately.}
+\end{itemize}
+
+##Conclusion
+\begin{figure}
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .15]{prevlit3.png}
+\caption{Nonprofit results.}
+\end{center}
+\end{adjustwidth}
+\end{figure}
+
+##Further Exploration
+
+Compare coagglomeration metrics
+\vspace{1cm}
+
+Present at the Midwest Political Science Association conference in Chicago, if accepted
+
+
+##References
+\tiny
+\vspace{.1cm}
+\hangparas{3em}{1}
+Bielefeld, W., Murdoch, J. C. (2004). The locations of nonprofit organizations and their for-profit counterparts: An exploratory analysis. \textit{Nonprofit and Voluntary Sector Quarterly, 33(2)}, pp.221-246.
+
+Da Costa, M. M. (2016). What influences the location of nonprofit organizations? A spatial analysis in Brazil. _VOLUNTAS: International Journal of Voluntary and Nonprofit Organizations, 27(3)_, pp.1064-1090.
+
+Devereux, M. P., Griffith, R., & Simpson, H. (1999). The geographic distribution of production activity in the UK. \textit{Institute for Fiscal Studies}.
+
+Duranton, G., Overman, H. G. (2005). Testing for localization using micro-geographic data. _The Review of Economic Studies, 72(4)_, pp.1077-1106.
+
+Ellison, G., & Glaeser, E. L. (1997). Geographic concentration in US manufacturing industries: A dartboard approach. \textit{Journal of political economy, 105(5)}, 889-927.
+
+Ellison, G., Glaeser, E. L., & Kerr, W. R. (2010). What causes industry agglomeration? Evidence from coagglomeration patterns. _American Economic Review, 100(3)_, 1195-1213.
+
+Fruttero, A., & Gauri, V. (2005). The strategic choices of NGOs: Location decisions in rural Bangladesh. \textit{Journal of Development Studies, 41(5)}, 759-787.
+
+Harrison, T. D. (2008). Taxes and agglomeration economies: how are they related to nonprofit firm location? \textit{Southern Economic Journal}, 538-557.
+
+Katz, H. (2014). Poverty and other factors affecting the location of nonprofit human service organizations. _International Journal of Social Work and Human Services Practice, 2(5)_, 163-172.
+
+Rosenthal, S. S., & Strange, W. C. (2004). Evidence on the nature and sources of agglomeration economies. _Handbook of regional and urban economics, Vol.4_, 2119-2171. Elsevier.
+
+##Overview
+  \tableofcontents

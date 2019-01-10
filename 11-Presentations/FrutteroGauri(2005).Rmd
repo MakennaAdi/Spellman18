@@ -1,0 +1,349 @@
+---
+title: "The Strategic Choices of NGOs: Location Decisions in Rural Bangladesh"
+subtitle: "Journal of Development Studies, 2005"
+author: "Anna Fruttero and Varun Gauri"
+institution: 
+date: "2005"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Median}
+- \usepackage{xcolor}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \usepackage{pgflibraryarrows}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+  
+#Purpose and Result Summary
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##Research Question
+
+What are the determinants of NGO location decisions in terms of incentives?
+\newline
+\pause
+\begin{itemize} \itemsep1em
+  \item{donor funding}
+  \item{complementarities and substitutes}
+  \item{community need}
+\end{itemize}
+
+##Motivations
+\begin{itemize} \itemsep1em
+  \item<1->{\$1.3 billion from World Bank on NGOs in just 7 countries}
+  \item<2->{policy effectiveness}
+  \item<3->{theory of NGO incentives}
+  \item<4>{issues of inefficiency}
+\end{itemize}
+
+##Implications for My Project
+\begin{itemize} \itemsep1em
+  \item{Economic theory}
+  \item{Confirmation of results}
+\end{itemize}
+
+##Main Results
+
+Net change in number of NGO programs ina community is not related to indicators of community need
+\pause
+\newline
+\newline
+NGOs prioritized broad coverage, regardless of need
+\pause
+\newline
+\newline
+NGOs did not avoid duplicating efforts of other NGOs
+
+#Data
+
+##Background on Bangladesh
+Favorable environment for NGOs
+\newline
+\newline
+Four major NGOS (Grameen Bank, BRAC, Proshika, and Caritas) as well as smaller non-brand NGOs
+\newline
+\newline
+Major growth in NGO operation between 1995 and 2000
+
+##Data
+\begin{itemize} \itemsep1em
+  \item{253 communities}
+  \item{Bangladesh Bureau of Statistics Household Income and Expenditure Survey}
+  \item{1995-1996, 2000}
+  \item{7 activity sectors: credit, education, skills training, health/family planning, tree plantation, water/sanitation, other}
+\end{itemize}
+
+#Theory
+
+##Theory
+\begin{columns}
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \visible<1>{
+  \small {ALTRUISTIC}\par}
+\end{overlayarea}
+\visible<1->{
+\begin{overlayarea}{\linewidth}{1cm}
+  flexible\par
+  innovative\par
+  efficient\par
+  "magic bullets"\par
+\end{overlayarea}}
+\end{column}
+
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \visible<1>{
+  \small {MONEY-MOTIVATED}\par}
+\end{overlayarea}
+\visible<1->{
+\begin{overlayarea}{\linewidth}{1cm}
+  ineffective\par
+  self-promoting\par
+  haphazard\par
+  corrupt\par
+\end{overlayarea}}
+\end{column}
+\end{columns}
+
+##Economic Model
+Consumer choice model in two periods
+
+$$U=u(x_1) + \beta[\pi(p)u(x_2)]$$
+$$\text{BC: } x_1 + p \leq F_1 \text{ and } x_2\leq F_2$$ 
+where
+$x_i$: amount spent on humanitarian activity in period $i$ 
+
+$F_i$: total funds in period $i$
+
+$\pi$: probability of receiving funds in period 2
+
+$p$: amount spent on pragmatic activity in period 1
+
+##The Pragmatic Approach
+
+$$U(\text{alone})= pu(x)+ (1-p)u(y)$$
+
+$$U(\text{joint})=u(z)$$
+\pause
+$$U(\text{alone})>U(\text{joint})$$
+
+##The Pragmatic Approach
+$$u(x)-u(y)>\frac{u(z)-u(y)}{p}$$   \par
+\vspace{1cm}
+$$p^*=\frac{u(z)-u(y)}{u(x)-u(y)}$$
+
+##Two extreme cases
+Condition 1: $u(x)-u(y)>\frac{u(z)-u(y)}{p}$\par
+\vspace{1cm}
+\begin{columns}
+\begin{column}{0.50\textwidth}
+  \centering
+No Punishment
+
+\vspace{.5cm}
+If $y=z$,
+
+$u(x)-u(y)> 0$\par
+
+\vspace{.5cm}
+All agents go alone.
+\end{column}
+
+\begin{column}{0.50\textwidth}
+  \centering
+No Reward
+
+\vspace{.5cm}
+If $x=z$,
+$u(z)-u(y)>\frac{u(z)-u(y)}{p}$\par
+
+\vspace{.5cm}
+No agent goes alone.
+\end{column}
+\end{columns}
+
+##The Pragmatic Approach
+\begin{itemize} \itemsep1em
+  \item{Contract specifications affect NGO location}
+  \item{Joint location is "safer" than independent location}
+  \item{Established vs. new NGOs}
+  \item{Measurable vs unmeasurable outcomes}
+\end{itemize}
+
+##The Humanitarian Approach
+
+$$y=f(n_i, n_{-i};p)$$
+  \centering
+\begin{tikzpicture}[>=triangle 45]
+  \draw[->] (3,0) -- (2,-1);
+  \draw[->] (4,0) -- (5,-1);
+\end{tikzpicture}
+
+\begin{columns}
+\begin{column}{.5\textwidth}
+\centering
+COMPLEMENTS\par
+\vspace{1cm}
+Cluster
+\end{column}
+
+\begin{column}{.5\textwidth}
+\centering
+SUBSTITUTES\par
+\vspace{1cm}
+Disperse
+\end{column}
+\end{columns}
+
+##The Humanitarian Approach
+\begin{itemize}   \itemsep1em
+  \item{All else equal, a NGO will choose a higher poverty community}
+  \item{For a given poverty level, the only factor is whether other programs are complements or substitutes, regardless of who runs the program}
+\end{itemize}
+
+#Method 
+
+##Method--OLS Regression
+\begin{small}
+\begin{align*}
+N_{ij(t+5)}-N_{ijt} & =\beta_0+\beta_1 N_{ijt}+\beta_2 N_{i(-j)t} + \beta_3 Y_{it}  \\[10pt]
+                    & + \sum_k \beta_k W_{ikt} + \sum_h \beta_h X_{iht} +\mu_g + \varepsilon_{ij}t,
+\end{align*}
+\end{small}
+where
+\begin{multicols}{2}
+$i$: a community 
+
+$j$: a program type
+
+$t$: a year
+
+$N_{ijt}$: per capita number of programs
+
+$W_{it}$: community characteristics
+
+$X_{it}$: measures of poverty or need 
+
+$\mu_g$: geographic fixed effect
+
+\end{multicols}
+
+#Results
+
+##Results
+\begin{adjustwidth}{-1em}{-1em}
+\begin{small}
+\begin{table}
+\begin{tabular}{lp{4em}p{4em}p{4em}}
+Variable                      & NGOs Overall    & Brand NGOs      & Non-brand NGOs\\\hline\hline
+Per capita NGOs 1995          & \cellcolor{r}   &                 &               \\
+Per capita brand programs     &                 & \cellcolor{r}   &               \\
+Per capita non-brand programs &                 &                 & \cellcolor{r} \\
+Per capita gov't programs     & \cellcolor{g}   & \cellcolor{g}   &               \\
+\end{tabular}
+\caption{Regression on NGOs and Government Programs in Bangladesh.}
+\end{table}
+\end{small}
+\end{adjustwidth}
+
+##Results
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+  \footnotesize
+\begin{tabular}{p{5em}p{3.5em}p{3.5em}p{3.5em}p{3.5em}p{3.5em}p{3.5em}}
+                          & Credit        & Education        & Family Planning & Skills training & Water Supply  & Tree Planting            \\\hline\hline
+Same type 1995        & \cellcolor{r}     & \cellcolor{r}    & \cellcolor{r}   & \cellcolor{r}   &  \cellcolor{r} & \cellcolor{r}            \\
+\end{tabular}
+\caption{Results by sector.}
+\vspace{1cm}
+
+\begin{tabular}{p{5em}p{3.5em}p{3.5em}p{3.5em}p{3.5em}}
+                          & Grameen       & BRAC          & Proshika      & Caritas     \\\hline\hline
+Same brand 1995           & \cellcolor{r} & \cellcolor{r} & \cellcolor{r} & \cellcolor{r}\\
+\end{tabular}
+\caption{Results by brand.}
+
+\end{table}
+\end{adjustwidth}
+
+##Results
+\begin{adjustwidth}{-1em}{-1em}
+\begin{small}
+\begin{table}
+\begin{tabular}{lp{4em}p{4em}p{4em}p{4em}}
+\multicolumn{1}{l}{Variable} & \multicolumn{4}{c}{Credit}    \\
+                              & BRAC            & Grameen         & Proshika      & Non-brand \\\hline\hline
+Per capita own brand          & \cellcolor{r}   & \cellcolor{r}   & \cellcolor{r} & \cellcolor{r}    \\
+Per capita other brand        & \cellcolor{g}   &                 &               & \cellcolor{r}    \\
+\end{tabular}
+\caption{Regression on Credit Programs by Brand.}
+\end{table}
+\end{small}
+\end{adjustwidth}
+
+##Results
+\begin{itemize} \itemsep1em
+  \item{NGOs in Bangladesh move away from other similar NGOs}
+  \item{indicators of need do not seem to be a significant factor in NGO location}
+  \item{supports pragmatic model with broad coverage as the goal}
+\end{itemize}
+
+#Conclusion and Next Steps
+
+##Conclusion
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{small}
+\begin{tabular}{lccccc}
+                      & Similar                 & Similar             & Different           & Existing          & N and R model   \\
+                      & FPs                     & NPs                 & NPs                 & vs. New           & confirmed?      \\\hline\hline
+B and M               & \cellcolor{g}           &\cellcolor{r}        &                     & NO                & YES             \\
+                      &                         &                     &                     &                   &                 \\
+Harrison              &                         &\cellcolor{g}        & \cellcolor{r}       & YES               &                 \\
+                      &                         &                     &                     &                   &                 \\
+Marchesini            &                         &\cellcolor{g}        & \cellcolor{g}       & YES               & NO              \\
+F and G               &                         &\cellcolor{r}        &                     & YES               & NO              \\
+\end{tabular}
+\caption{Comparison with Previous Results.}
+\end{small}
+\end{table}
+\end{adjustwidth}
+
+
+##Next Steps
+Read chapter from Alonso, and Rosenthal and Strange (2005)
+\newline
+\newline
+\newline
+Start to replicate agglomeration metrics from Ellison and Glaeser (1997), and Duranton and Overman (2005) 
+
+
+##References
+\footnotesize
+\hangparas{3em}{1}
+Fruttero, A., & Gauri, V. (2005). The strategic choices of NGOs: Location decisions in rural Bangladesh. \textit{Journal of Development Studies, 41(5)}, 759-787.
+
+
+##Overview
+  \tableofcontents

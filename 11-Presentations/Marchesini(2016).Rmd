@@ -1,0 +1,301 @@
+---
+title: "What Influences the Location of Nonprofit Organizations?"
+subtitle: "A Spatial Analysis in Brazil"
+author: |
+  | Marcelo Marchesini da Costa
+  | 
+institution: University of NY at Albany
+date: "2016"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Median}
+- \usepackage{xcolor}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+  
+#Purpose and Result Summary
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##Research Question
+
+What are the local characteristics or factors influencing where new nonprofits will be established?
+\newline
+\newline
+\newline
+How important are community needs, available resources, or the existence of similar organizations for nonprofits' location?
+
+##Implications for My Project
+\begin{itemize} \itemsep1em
+
+\item Geographic factors/spatial analysis (scale)
+\pause
+
+\item Division of "fields of activity"
+\pause
+
+\item Importance of existing nonprofit density
+\pause
+
+\item Interaction with government policy
+\end{itemize}
+
+##Main Results
+
+Evidence of agglomeration (existing NP density)
+\pause
+\newline
+\newline
+Location factors vary across sectors and regions of Brazil.
+\pause
+\newline
+\newline
+Nonprofit density matters more than needs and resources.
+
+#Theory
+
+##Theory
+\begin{columns}
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {NEEDS}\par
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  poverty\par
+  unemployment\par
+  inequality\par
+  high violence\par
+\end{overlayarea}
+\end{column}
+
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {RESOURCES}\par
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  donors\par
+  political connections\par
+  social capital\par
+  government investment\par
+\end{overlayarea}
+\end{column}
+\end{columns}
+
+##Model
+\begin{small}
+\begin{align*}
+\text{NPO density}& =\alpha+\overbrace{\beta_1 I_{i}+\beta_2 P_{i} + \beta_3 U_{i} + \beta_4 H_i}^\text{Needs} \\[10pt]
+                  & + \underbrace{\beta_5K_i +\beta_6R_i+\beta_7G_i+\beta_8C_i}_\text{Resources}+\underbrace{\beta_9N_i}_\text{Existing NP density}+\varepsilon_{i},
+\end{align*}
+\end{small}
+where
+\begin{multicols}{2}
+$i$: a municipality 
+
+$I_i$: inequality
+
+$P_i$: poverty
+
+$U_i$: unemployment
+
+$H_i$: homicides
+
+$R_i$: rural population 
+
+$G_i$: government investment
+
+$C_i$: state capital
+
+$N_i$: existing NP density
+
+\end{multicols}
+
+#Method 
+
+##Method
+\begin{itemize}
+  \item<1->{OLS}
+  \newline
+  \newline
+  \item<2>{Geographic Weighted Regression}
+\end{itemize}
+
+#Data
+
+##Data
+\begin{columns}
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {NONPROFIT DATA}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{4cm}
+  \centering\vfill
+  \includegraphics[height=2.5cm,width=2cm]{IBGE.jpeg}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  2001-2010\par
+\end{overlayarea}
+\end{column}
+
+\begin{column}{0.50\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {DEMOGRAPHIC DATA}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{4cm}
+  \centering\vfill
+  \includegraphics[height=3cm,width=2cm]{UNDP.jpg}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  2000\par
+\end{overlayarea}
+\end{column}
+
+\end{columns}
+
+##Data
+\begin{itemize}
+  \item{5562 municipalities}
+  \newline
+  \item{Homicide rate from the Ministry of Health}
+  \newline
+  \item{Government investment data from the IPEA}
+\end{itemize}
+
+#Results
+
+##Results
+\begin{adjustwidth}{-3em}{-3em}
+\begin{small}
+\begin{table}
+\begin{tabular}{lccccc}
+Variable                  & NPOs            & Religious       & Advocacy      & Prof.             & Cultural      \\
+                          & Overall         & NPOs            & NPOs          & Assoc.            & NPOs          \\\hline\hline
+\hspace{-4mm}Needs        &                 &                 &               &                   &               \\
+Inequality                & \cellcolor{r}   &                 & \cellcolor{r} &                   &               \\
+Poverty                   &                 & \cellcolor{r}   & \cellcolor{g} & \cellcolor{g}     & \cellcolor{r} \\
+Unemp                     & \cellcolor{r}   &                 &               & \cellcolor{r}     &               \\  
+Homicides                 &                 & \cellcolor{g}   &               &                   &               \\
+\hspace{-4mm}Resources    &                 &                 &               &                   &               \\
+Rural pop.                & \cellcolor{g}   & \cellcolor{r}   & \cellcolor{g} & \cellcolor{g}     & \cellcolor{g}\\
+\hspace{-4mm}NPO density  &                 &                 &               &                   &               \\
+NP density                & \cellcolor{g}   &                 & \cellcolor{g} & \cellcolor{g}     & \cellcolor{g}\\
+\end{tabular}
+\caption{OLS regression results for NPOs created between 2001 and 2010.}
+\end{table}
+\end{small}
+\end{adjustwidth}
+
+##Results
+\begin{adjustwidth}{-3em}{-3em}
+\begin{small}
+\begin{table}
+\begin{tabular}{lc!{\vrule}cccc}
+\multicolumn{1}{l}{Variable} & \multicolumn{1}{c}{OLS} & \multicolumn{4}{c}{GWR}    \\
+                          &                     & Religious          & Advocacy         & Professional        & Cultural            \\\hline\hline
+\hspace{-4mm}Needs        &                     &                    &                  &                     &                     \\
+Inequality                & \cellcolor{r}       & \cellcolor{g}      & \cellcolor{r}    & \cellcolor{r}       & \cellcolor{g}       \\
+Poverty                   &                     & \cellcolor{r}      & \cellcolor{r}    & \cellcolor{g}       & \cellcolor{r}       \\
+Unemp                     & \cellcolor{r}       & \cellcolor{g}      & \cellcolor{g}    & \cellcolor{r}       &                     \\  
+Homicides                 &                     & \cellcolor{g}      &                  &                     &                     \\
+\hspace{-4mm}Resources    &                     &                    &                  &                     &                     \\
+Rural pop.                & \cellcolor{g}       & \cellcolor{r}      & \cellcolor{g}    & \cellcolor{g}       & \cellcolor{g}       \\
+Capital                   &                     & \cellcolor{r}      & \cellcolor{g}    & \cellcolor{g}       & \cellcolor{r}       \\
+\hspace{-4mm}NPO density  &                     &                    &                  &                     &                     \\
+NP density                & \cellcolor{g}       &                    & \cellcolor{g}    & \cellcolor{g}       & \cellcolor{g}       \\
+\end{tabular}
+\caption{OLS regression vs. GWR results.}
+\end{table}
+\end{small}
+\end{adjustwidth}
+
+##Results
+\begin{center}
+\includegraphics[width=8.5cm]{LISA.png}
+\end{center}
+
+##Results
+\begin{center}
+\includegraphics[width=7.5cm]{Poverty.png}
+\end{center}
+
+##Results
+\begin{center}
+\includegraphics[width=7.5cm]{NPOdensity.png}
+\end{center}
+
+#Conclusion and Next Steps
+
+##Conclusion
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{small}
+\begin{tabular}{lccccc}
+                      & Similar                 & Similar             & Different           & Existing          & N and R model   \\
+                      & FPs                     & NPs                 & NPs                 & vs. New           & confirmed?      \\\hline\hline
+B and M               & \cellcolor{g}           &\cellcolor{r}        &                     & NO                & YES             \\
+                      &                         &                     &                     &                   &                 \\
+Harrison              &                         &\cellcolor{g}        & \cellcolor{r}       & YES               &                 \\
+                      &                         &                     &                     &                   &                 \\
+Marchesini            &                         &\cellcolor{g}        & \cellcolor{g}       & YES               & NO              \\
+
+\end{tabular}
+\caption{Comparison with Previous Results.}
+\end{small}
+\end{table}
+\end{adjustwidth}
+
+
+##Next Steps
+Read Fruttero and Gauri (2006)
+\newline
+\newline
+\newline
+Start to replicate agglomeration metrics from Ellison and Glaeser (1997), and Duranton and Overman (2005) 
+
+
+##References
+\footnotesize
+\hangparas{3em}{1}
+Bielefeld, W., Murdoch, J. C. (2004). The locations of nonprofit organizations and their for-profit counterparts: An exploratory analysis. \textit{Nonprofit and Voluntary Sector Quarterly, 33(2)}, pp.221-246.
+
+Da Costa, M. M. (2016). What influences the location of nonprofit organizations? A spatial analysis in Brazil. _VOLUNTAS: International Journal of Voluntary and Nonprofit Organizations, 27(3)_, pp.1064-1090.
+
+Duranton, G., Overman, H. G. (2005). Testing for localization using micro-geographic data. _The Review of Economic Studies, 72(4)_, pp.1077-1106.
+
+Ellison, G., Glaeser, E. L. (1997). Geographic concentration in US manufacturing industries: a dartboard approach. _Journal of political economy, 105(5)_, pp.889-927.
+
+Harrison, T. D. (2008). Taxes and agglomeration economies: how are they related to nonprofit firm location?. _Southern Economic Journal_, pp.538-557.
+
+
+
+##Overview
+  \tableofcontents

@@ -1,0 +1,219 @@
+---
+title: "Taxes and Agglomeration Economies"
+subtitle: "How Are They Related to Nonprofit Firm Location?"
+author: |
+  | Teresa Harrison
+  | _Southern Economic Journal_
+date: "2008"
+output: 
+  beamer_presentation:
+    theme: "CambridgeUS"
+    colortheme: "seagull"
+    fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    toc: true
+header-includes:
+- \usepackage{xcolor}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+#Purpose and Result Summary
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+##Research Question
+
+How are taxes and agglomeration economies related to nonprofit firm location?
+
+##Implications for My Project
+\begin{itemize} \itemsep1em
+
+\item Differentiating between localization and urbanization economies
+\pause
+
+\item Separating new nonprofits from older nonprofits
+\pause
+
+\item Looking at market saturation by including nonlinear terms  
+\end{itemize}
+
+##Main Results
+
+Evidence of effect from taxes
+\newline
+\newline
+\newline
+
+Evidence of agglomeration economies 
+
+#Theory
+
+##Theory
+\begin{itemize} \itemsep1em
+\pause
+\item<2-> Nonprofits are exempt from taxes.
+\item<3-> Taxes and nonprofit market share
+\item<4-> Individual tax rates
+\item<5-> Government provision
+\item<6-> Localization economies
+\item<7> Urbanization economies
+\end{itemize}
+
+#Method
+
+##Regression
+$$prob(Y_{ij}=1)=\theta+\alpha C_{ij}+\beta I_{ij} + \delta A_{ij} + \gamma X_{ij} + \varepsilon_{ij}$$ where
+
+$i$ is a given nonprofit firm,
+
+$j$ is a state, and
+
+$C_{ij}$ is corporate, state, and property tax
+
+$I_{ij}$ is individual income tax
+
+$A_{ij}$ measures the agglomeration of existing nonprofits
+
+$X_{ij}$ measures demand-side characteristics related to the state
+
+#Data
+
+##Data
+\begin{columns}[t]
+\begin{column}{0.30\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {NONPROFIT DATA}\par
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{5cm}
+  \centering\vfill
+  \includegraphics[height=3cm,width=2cm]{NCCSLogo.png}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  1997, 2002\par
+\end{overlayarea}
+\end{column}
+
+\begin{column}{0.30\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {TAX RATES}\par
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{5cm}
+  \centering\vfill
+  \includegraphics[height=3cm,width=2cm]{TaxHandbook.jpg}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  1996, 2002\par
+\end{overlayarea}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  \small {STATE/COUNTY CHARACTERISTICS}\par
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{5cm}
+  \centering\vfill
+  \includegraphics[height=3cm,width=2cm]{CensusLogo.png}
+\end{overlayarea}
+\begin{overlayarea}{\linewidth}{1cm}
+  \centering
+  1997-1998, 2002-2003\par
+\end{overlayarea}
+\end{column}
+
+\end{columns}
+
+#Results
+
+##Results
+\begin{table}
+\begin{tabular}{lcc}
+Regression Variable   & 1997                & 2002                  \\\hline\hline
+Corporate tax         & \textcolor{red}{--} &\textcolor{green}{+}   \\ 
+Property tax          & \textcolor{red}{--} &\textcolor{green}{+}   \\
+Sales/Individual tax  & \textcolor{green}{+}&\textcolor{green}{+}   \\
+Localization          & \textcolor{green}{+}&\textcolor{green}{+}   \\  
+Urbanization          & \textcolor{green}{+}&\textcolor{red}{--}    \\
+\end{tabular}
+\caption{Regression results.}
+\end{table}
+
+#Conclusion and Next Steps
+
+##Conclusion
+\begin{center}
+\LARGE Tax rates and nonprofit location are \textcolor{green}{positively correlated}.
+\end{center}
+
+##Conclusion
+\textcolor{gray}{Tax rates and nonprofit location are positively
+correlated.}
+
+\medspace
+
+\begin{center}
+\LARGE\textcolor{green}{Sources of revenue} are important: service-driven vs. donation-driven
+\end{center}
+
+##Conclusion
+\textcolor{gray}{Tax rates and nonprofit location are positively
+correlated.}
+
+\textcolor{gray}{Sources of revenue are important: service-driven vs. donation-driven}
+
+\begin{center}
+\LARGE\textcolor{green}{Individual tax rates} matter more than business-related taxes.
+\end{center}
+
+##Conclusion
+\textcolor{gray}{Tax rates and nonprofit location are positively
+correlated.}
+
+\textcolor{gray}{Sources of revenue are important: service-driven vs. donation-driven}
+
+\textcolor{gray}{Individual tax rates matter more than business-related taxes.}
+
+\begin{center}
+\LARGE{Nonprofits are \textcolor{green}{attracted to similar nonprofits} and \textcolor{red}{repelled by different nonprofits}.}
+\end{center}
+
+##Conclusion
+\begin{table}
+\begin{tabular}{lccc}
+                      & Similar                 & Similar             & Different               \\
+                      & For-Profits             & Nonprofits          & Nonprofits              \\\hline\hline
+Harrison              &                         &\textcolor{green}{+} & \textcolor{red}{--}     \\
+                      &                         &                     &                         \\
+B and M               & \textcolor{green}{+}    &\textcolor{red}{--}  &                         \\
+
+\end{tabular}
+\caption{Comparison with Previous Results.}
+\end{table}
+
+
+
+##Next Steps
+Read Stern and Seifert (2009, 2010)
+\newline
+\newline
+\newline
+Continue to explore different agglomeration metrics and empirical results
+
+##References
+
+Harrison, T. D. (2008). Taxes and agglomeration economies: how are they related to nonprofit firm location?. Southern Economic Journal, 538-557.
+
+##Overview
+  \tableofcontents

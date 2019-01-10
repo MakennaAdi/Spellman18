@@ -1,0 +1,70 @@
+---
+title: "Nonprofit Agglomeration"
+output: 
+  pdf_document: default
+  html_notebook: default
+header-includes:
+- \usepackage{graphicx}
+- \usepackage{subcaption}
+- \usepackage{float}
+- \usepackage{wrapfig}
+---
+
+Agglomeration economies, as set out by Alfred Marshall (1890), have clear effects on for-profits in manufacturing industries (Ellison and Glaeser, 1997; Duranton and Overman, 2005; Devereux, Griffith, and Simpson, 1999). However, a much smaller body of literature exists on agglomeration economies in the nonprofit sector. Since agglomerative forces affect location decisions, and nonprofit location decisions impact nonprofits' success and effectiveness (Fruttero and Gauri, 2005; Bielefeld and Murdoch, 2004), understanding the effects of agglomerative forces on nonprofits is essential in building a model that describes nonprofit location decisions. Previous attempts have relied on a needs-and-resources model that bases a nonprofit's location decision on its necessary proximity to either clients or donors. In this paper, we explore the effects of nearby nonprofits on nonprofit location, to understand 1.) whether or not agglomerative forces affect nonprofits, and if so, 2.) whether nonprofits cluster enough to take advantage of the cost-saving benefits of agglomeration. Specifically, we replicate metrics developed to measure agglomeration among for-profits using data from the NCCS to measure agglomeration among nonprofits. 
+
+  Three metrics are of particular importance. The Ellison and Glaeser (1997) metric for agglomeration, $\gamma$, compares an industry's geographic concentration to the larger sector concentration, scaled by the industry's plant size distribution. A highly agglomerated industry should have a gamma to 1. An industry with a geographic concentration that is only random, on the other hand, should have a gamma value of 0. Negative gammas presumably imply that plants in the industry "repel" each other, and that the industry tends to disperse more than agglomerate. One limitation of this metric is that it uses discrete geographic units, creating arbitrary borders between firms. 
+  
+  The Duranton and Overman (2005) metric addresses the issue of geographic units with arbitrary borders by using K-densities and continuous distance, rather than geographic units. Evaluating agglomeration in this way, they find that agglomeration largely happens within a 50 km radius, giving a useful indication of the geographic scale of agglomeration among for-profits. While they find less evidence of agglomeration than Ellison and Glaeser, they find that 43% of manufacturing industries exhibit localization, and 22% show dispersion. In contrast, Ellison and Glaeser (EG) metric for the same areas showed localization in 94% of industries and dispersion in only 6%.
+  
+  The last metric we replicate is the Devereux, Griffith, and Simpson (1999) metric, $\alpha$, which is a simplified version of the EG metric. This metric compares the geographic concentration of an industry with its industry plant size distribution. An industry is agglomerated if it exhibits concentration over and above what is expected, given its plant size distribution. Devereux et al. find a .988 correlation between their metric and the EG metric for manufacturing industries in the UK, confirming Ellison and Glaeser's results with a much simpler and more intuitive metric (Figure 1).
+\begin{figure}[H]
+  \begin{subfigure}{.5\textwidth}
+  \includegraphics{EGgamma.png}
+  \caption{Gamma for Manufacturing Industries, US}
+  \caption*{Source: Ellison and Glaeser (1997)}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+  \includegraphics{DGSmetric.png}
+  \caption{Alpha for Manufacturing Industries, UK}
+  \caption*{Source: Devereux et al. (1999)}
+  \end{subfigure}
+\caption{For-Profit Agglomeration}
+\vspace{-30pt}
+\end{figure}
+
+  
+\begin{wrapfigure}{l}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{gammastate.jpg}
+  \end{center}
+  \caption{Nonprofit Core Code Gammas}
+  \vspace{10pt}
+\end{wrapfigure}
+
+Replicating these metrics for the nonprofit sector, we find a very different distribution. First, we use states as the geographic units and NTEE core codes as equivalents to four-digit SIC industries. Also, we use total revenue, rather than employment, as a measure of size. Given these differences in the calculation of the EG metric, we consistently find that nonprofits in NTEE core codes disperse as much or more than they agglomerate (Figure 2). 
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{gammaalpha.jpg}
+  \end{center}
+  \caption{Alpha vs. Gamma}
+  \vspace{-10pt}
+\end{wrapfigure}  
+
+The DGS metric confirms these results, but shows an interesting correlation with the EG metric values. For positive values of gamma and alpha, the correlation is .9822 but overall, the correlation is only .2126. Figure 3 shows how the DGS and EG metric relate in terms of nonprofit core codes. Clearly, the EG and DGS metrics capture different characteristics of dispersion but agree in terms of agglomeration.
+
+Finally, the EG and DGS coagglomeration metrics show how industries agglomerate or disperse with other industries (i.e. urbanization). Looking at the core codes within the 26 major NTEE groups, we find similar results between the two metrics in describing how nonprofit core codes locate relative to other similar core codes (Figure 4). According to these metrics, there seems to be wide variation in how much nonprofit core codes cluster with similar nonprofits, with broad coverage appearing to motivate some, while urbanization economies seem to motivate others.
+
+\begin{figure}[b]
+  \begin{subfigure}{.5\textwidth}
+  \includegraphics{gammacoagg.jpg}
+  \caption{EG Coagglomeration Metric}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+  \includegraphics{alphacoagg.jpg}
+  \caption{DGS Coagglomeration Metric}
+  \end{subfigure}
+\caption{Nonprofit Coagglomeration}
+\end{figure}
+
+Although it is not clear what causes such a wide variety of behaviors among nonprofits, it is clear that they do not behave like manufacturing for-profits. Any model of nonprofit location would have to take into account the factors that make nonprofits cluster or disperse geographically. These results raise many questions for future research, for example, what factors cause nonprofits to cluster or disperse and whether nonprofits in rural and urban areas systematically behave differently.

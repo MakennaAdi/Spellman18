@@ -1,0 +1,137 @@
+---
+title: "Nonprofit Agglomeration"
+subtitle: 
+author: 
+institution: 
+date: "2018"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Metro}
+- \usepackage{xcolor}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \usepackage{pgflibraryarrows}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+
+#Ellison and Glaeser (1997) Metrics
+##EG Agglomeration Metric
+
+$$\gamma = \frac{G-(1-X)H}{(1-X)(1-H)}$$
+
+where $G=\sum(s_i-x_i)^2$, $H=\sum{z_k^2}$, and $X=\sum{x_i^2}$
+\begin{itemize} \itemsep1em
+  \item{$z_k$ is a measure of each plant's size}
+    \begin{itemize}
+    \item{given by each plant's share of industry employment}
+  \end{itemize}
+  \item{$s_i$ is each area's share of the industry employment}
+  \begin{itemize}
+    \item{the sum of all $z_k$ in each area}
+  \end{itemize}
+  \item{$x_i$ is each area's share of overall manufacturing employment}
+\end{itemize}
+
+##EG Coagglomeration Metric
+
+$$\gamma^c=\frac{[\frac{G}{(1-X)}]-H-\sum_{j=1}^r{\hat\gamma_jw_j^2(1-H_j)}}{1-\sum_{j=1}^rw^2_j}$$
+
+
+where:
+\begin{enumerate}
+  \item{G is the raw concentration of employment in the group as a whole}
+  \item{H is the plant size Herfindahl of the group as a whole}
+  \item{$X$ is the Herfindahl of $x_i$, each area's share of overall manufacturing employment}
+  \item{$\hat\gamma_j$ is the gamma of the jth industry in the group}
+  \item{$w_j$ is the jth industry's employment share of the group}
+  \item{$H_j$ is the plant size Herfindahl of the jth industry}
+\end{enumerate}
+
+
+#Devereux, Griffith, and Simpson (1999) Metrics
+##DGS Agglomeration Metric
+$$\alpha = \left[\sum_{k=1}^{K}{s_k^2}-(\frac{1}{K})\right]-\left[\sum_{n=1}^{N}{z_n^2}-(\frac{1}{N})\right]$$
+Where:
+\begin{itemize}
+  \item where $K$ is the number of regions
+  \item $s_k$ is each region's share of industry size
+  \item $N$ is the number of firms(nonprofits)
+  \item $z_n$ is each firm's share of industry size
+\end{itemize}
+
+##DGS Coagglomeration Metric
+$$C(r) = \frac{G_r-\sum_{i=1}^{r}{w_i^2G_i}}{\left(1-\sum_{i=1}^{r}{w_i^2}\right)}$$
+
+Where:
+\begin{itemize}
+  \item{$G_r$ is the geographic concentration of the group as a whole,}
+  \item{$G_i$ is the geographic concentration of each core code in the group,}
+  \item{$w_i$ is every core code's share of group revenue}
+\end{itemize}
+
+#Results
+##EG Results
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{EGgamma.png}
+\caption{Gamma for Manufacturing Industries, US}
+  \caption*{Source: Ellison and Glaeser (1997)}
+\end{figure}
+
+##DGS Results
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{DGSmetric.png}
+\caption{Alpha for Manufacturing Industries, UK}
+  \caption*{Source: Devereux et al. (1999)}
+\end{figure}
+
+##Nonprofit Results
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{gammastate.jpg}
+\caption{Gamma for Nonprofit Core Codes, US}
+\end{figure}
+
+##Gamma and Alpha Correlation
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{gammaalpha.jpg}
+\caption{EG gamma vs DGS alpha}
+\end{figure}
+
+##NP Coagglomeration Results
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{gammacoagg.jpg}
+\caption{EG coagglomeration gamma}
+\end{figure}
+
+
+##NP Coagglomeration Results
+\begin{figure}
+\centering
+\includegraphics[width = 1\textwidth]{alphacoagg.jpg}
+\caption{DGS coagglomeration metric}
+\end{figure}
+
+##Overview
+  \tableofcontents

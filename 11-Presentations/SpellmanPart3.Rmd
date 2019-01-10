@@ -1,0 +1,228 @@
+---
+title: "Nonprofit Agglomeration"
+subtitle: "Comparing metrics"
+author: "Westberg and Aditya"
+institution: 
+date: "2018"
+output: 
+  beamer_presentation:
+    #theme: "CambridgeUS"
+    #colortheme: "seagull"
+    #fonttheme: "structuresmallcapsserif"
+    slide_level: 2
+    #toc: true
+header-includes:
+- \usetheme{Median}
+- \usepackage{caption}
+- \usepackage{xcolor}
+- \usepackage{mdwlist}
+- \usepackage{setspace}
+- \usepackage{graphicx}
+- \usepackage{colortbl}
+- \usepackage{chngpage} 
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{hanging}
+- \usepackage{pgflibraryarrows}
+- \captionsetup[figure]{font = scriptsize, labelfont = scriptsize}
+- \setbeamersize{text margin left=1.5cm, text margin right=1.5cm}
+- \setbeamercovered{transparent}
+- \AtBeginPart{}
+- \AtBeginSection{}
+- \AtBeginSubsection{}
+- \AtBeginSubsubsection{}
+---
+##Outline
+  \tableofcontents
+  
+#Purpose and Result Summary
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##Research Question
+
+Do forces of agglomeration affect nonprofit location decisions?
+\newline
+\newline
+If so, do they cluster enough?
+
+##Project Overview
+\begin{enumerate} \itemsep1em
+  \item<1,2>{Read previous literature on agglomeration and nonprofit location}
+  \item<1,2>{Replicate Ellison and Glaeser metric}
+  \item<1,2>{Replicate E and G coagglomeration metric}
+  \item<2>{Replicate Duranton and Overman metric}
+  \item<1,2>{Interpret results}
+  \item<2>{Write paper}
+\end{enumerate}
+
+##Main Results
+
+Nonprofit industries differ widely in agglomeration.
+
+#Previous Literature
+
+##Summary of Previous Literature
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .15]{prevlit.png}
+\end{center}
+\end{adjustwidth}
+
+##Ellison and Glaeser Summary
+Research Question:
+\begin{enumerate}
+  \item{Is it possible to create indices of geographic concentration and coagglomeration that control for industry differences?}
+  \item{Are observed levels of concentration greater than would be expected to arise randomly?}
+\end{enumerate}
+
+Results: \newline
+--Slight concentration is highly prevalent.\newline
+--Gamma values between 0 and .6\newline
+--Wide variation in coagglomeration across industries.\newline
+
+Method:\newline
+--Create indices of agglomeration "$\gamma$" and coagglomeration "$\gamma^c$" \newline
+--Compare manufacturing industries in the US
+
+##Ellison and Glaeser Agglomeration Metric
+
+$$\gamma = \frac{G-(1-X)H}{(1-X)(1-H)}$$
+
+where $G=\sum(s_i-x_i)^2$, $H=\sum{z_k^2}$, and $X=\sum{x_i^2}$
+\begin{itemize} \itemsep1em
+  \item{$z_k$ is a measure of each plant's size}
+    \begin{itemize}
+    \item{given by each plant's share of industry employment}
+  \end{itemize}
+  \item{$s_i$ is each area's share of the industry employment}
+  \begin{itemize}
+    \item{the sum of all $z_k$ in each area}
+  \end{itemize}
+  \item{$x_i$ is each area's share of overall manufacturing employment}
+\end{itemize}
+
+
+#Data
+
+##Data
+\centering
+\Large
+\textcolor{MedianOrange}{There is ALWAYS an explanation of data file names.}
+
+##Data
+\begin{adjustwidth}{-3em}{-3em}
+\begin{table}
+\begin{tabular}{lll}
+Variable              & E and G (1997)            & My project          \\[5pt]\hline\hline
+                      & For-profit                & NCCS IRS-990 data   \\[5pt]
+Sector                & Manufacturing             & 12 sectors, 26 groups\\[5pt]
+Industry              & 459 industries            & 758 core codes      \\[5pt]
+Size                  & employment                & total revenue       \\[5pt]
+Geographic unit       & county                    & zipcodes            \\[5pt]
+                      & state                     & state               \\[5pt]
+                      & region                    &                     \\[5pt]
+\end{tabular}
+\caption{Application to Nonprofits.}
+\end{table}
+\end{adjustwidth}
+
+##NTEE Classification
+\begin{adjustwidth}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[scale = .43, trim = {0 0 0 4cm}, clip]{NTEE.jpg}
+\end{center}
+\end{adjustwidth}
+
+#Method
+
+##Method
+\begin{enumerate} \itemsep1em
+  \item<1->{Rerun ALL analyses with the correct dataset}
+  \item<2->{Categorize nonprofits by agglomeration type--get descriptive stats for each group}
+  \item<3->{Find core codes comparable to EG manufacturing industries}
+  \item<4->{Make scatterplots of gamma, color-coded by group}
+  \item<5>{Replicate Devereux, Griffith, and Simpson metric and compare to EG metric}
+\end{enumerate}
+
+#Results
+
+##The Real State-Level Gamma
+\begin{center}
+\includegraphics[width = 1\textwidth]{gammastate.jpg}
+\end{center}
+
+##The Real Zip-Level Gamma
+\begin{center}
+\includegraphics[width = 1\textwidth]{gammazip.jpg}
+\end{center}
+
+##Gamma Categories
+\begin{center}
+\includegraphics[height = .8\textheight]{gammatotrev.jpg}
+\end{center}
+
+##Comparable Industries
+\begin{center}
+\includegraphics[width = 1\textwidth]{NAICS.png}
+\end{center}
+
+##Gamma by Group
+\begin{center}
+\includegraphics[width = 1\textwidth]{gammarevNT1.jpg}
+\end{center}
+
+##Devereux, Griffith, and Simpson (1999) Metric
+\begin{itemize}
+  \item Question: Patterns of geographic and industrial concentration in UK production industries
+  \item Method: Multiple metrics
+  \item Results: Persistent patterns of agglomeration over and above industrial concentration
+  \item Metric: $$\left[\sum_{k=1}^{K}{s_k^2}-(\frac{1}{K})\right]-\left[\sum_{n=1}^{N}{z_n^2}-(\frac{1}{N})\right]$$
+  \begin{itemize}
+    \item where $K$ is the number of regions
+    \item $s_k$ is each region's share of industry size
+    \item $N$ is the number of firms(nonprofits)
+    \item $z_n$ is each firm's share of industry size
+  \end{itemize}
+\end{itemize}
+
+##DGS vs EG Metrics
+\begin{center}
+\includegraphics[width = 1\textwidth]{DGSvsEG.png}
+\end{center}
+Overall correlation: .2126 \newline
+Positive value correlation: .9822
+
+##DGS vs EG for Cedar Rapids
+\begin{center}
+\includegraphics[width = 1\textwidth]{DGSvsEGCR.png}
+\end{center}
+Overall correlation: .0859
+
+#Conclusion
+
+##Conclusion
+Both metrics confirm that nonprofits differ widely in how they agglomerate or disperse
+\newline
+\newline
+The much simpler DGS metric seems to do just as well at showing agglomeration, and may also show dispersion accurately.
+
+##Further Exploration
+Find the DGS metric for Cedar Rapids nonprofits for the past five years to look for trends or patterns.
+
+##Next Steps
+\begin{itemize} \itemsep1em
+  \item{Replicate DO metric for agglomeration}
+  \item{Write paper}
+\end{itemize}
+
+##References
+\footnotesize
+\hangparas{3em}{1}
+Ellison, G., & Glaeser, E. L. (1997). Geographic concentration in US manufacturing industries: A dartboard approach. \textit{Journal of political economy, 105(5)}, 889-927.
+
+Devereux, M. P., Griffith, R., & Simpson, H. (1999). The geographic distribution of production activity in the UK. \textit{Institute for Fiscal Studies}.
+
+##Overview
+  \tableofcontents
